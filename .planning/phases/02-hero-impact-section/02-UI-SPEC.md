@@ -48,11 +48,10 @@ Exceptions: none
 | Role | Size | Weight | Line Height | Usage in this phase |
 |------|------|--------|-------------|---------------------|
 | Body | 14px | 400 (regular) | 1.5 | Stat card labels ("Recycled", "CO2 Saved", "Total Items Sorted"), unit suffixes |
-| Label | 12px | 500 (medium) | 1.4 | Not primary in this phase; reserved for future sub-labels |
-| Heading | 20px | 600 (semibold) | 1.3 | Stat card metric values ("68%", "21 kg", "241") |
+| Heading | 20px | 700 (bold) | 1.3 | Stat card metric values ("68%", "21 kg", "241") |
 | Display | 28px | 700 (bold) | 1.2 | Motivational headline ("Great job! You've diverted **12.4 kg** of waste today.") |
 
-Font: `var(--font-sans)` (Geist) for all text. The motivational message uses Display size. The dynamic number within the motivational message ("12.4 kg") uses the same Display size but rendered in bold (700) with eco-green color to visually pop.
+Font: `var(--font-sans)` (Geist) for all text. The motivational message uses Display size. The dynamic number within the motivational message ("12.4 kg") is rendered in eco-green color to visually pop. Both Heading and Display share the same weight (700 bold) to keep the weight palette minimal while maintaining clear hierarchy through size difference (20px vs 28px).
 
 ---
 
@@ -142,7 +141,7 @@ Opacity: 100% on the gradient. SVG illustrations sit on top with full opacity.
 - **Border:** default Card ring (`ring-1 ring-foreground/10`)
 - **Internal layout:** Flex row, items-center, `p-4 gap-3`
 - **Icon:** 24x24px Lucide icon in a 40x40px rounded-lg container with light eco-color background
-- **Content:** Flex column — metric value (Heading 20px/600) on top, label (Body 14px/400, muted-foreground) below
+- **Content:** Flex column — metric value (Heading 20px/700 bold) on top, label (Body 14px/400, muted-foreground) below
 
 ### StatCard Data
 
