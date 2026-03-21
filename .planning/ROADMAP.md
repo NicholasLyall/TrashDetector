@@ -52,7 +52,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 02-01-PLAN.md — Hero impact section with motivational message, SVG illustration, and 3 stat cards
+- [x] 02-01-PLAN.md — Hero impact section with motivational message, SVG illustration, and 3 stat cards
 
 ### Phase 3: Live Feed Components
 **Goal**: Users can see the most recently sorted item with its image, classification details, and a scrollable activity log

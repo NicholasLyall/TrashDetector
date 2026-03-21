@@ -8,7 +8,7 @@
 ### Dashboard Layout
 
 - [x] **DASH-01**: App has a left sidebar with "ECO DASHBOARD" branding, nav icons for Dashboard, Analytics, Impact, Model, Settings, and Admin user at bottom
-- [ ] **DASH-02**: Dashboard homepage displays hero impact section as first visible element above the fold
+- [x] **DASH-02**: Dashboard homepage displays hero impact section as first visible element above the fold
 - [ ] **DASH-03**: Dashboard homepage displays prominent live feed section with latest sorted item
 - [ ] **DASH-04**: Top bar displays KPI chip strip (Total Items, Recycling Rate, Avg Confidence, Fallback Rate) always visible
 - [ ] **DASH-05**: Dashboard homepage displays waste composition chart with "View Full Analytics →" link
@@ -17,13 +17,13 @@
 
 ### Hero Impact
 
-- [ ] **HERO-01**: Hero section shows total waste diverted in kg
-- [ ] **HERO-02**: Hero section shows total CO2 saved in kg
-- [ ] **HERO-03**: Hero section shows recycling rate as percentage
-- [ ] **HERO-04**: Hero section shows total items sorted count
+- [x] **HERO-01**: Hero section shows total waste diverted in kg
+- [x] **HERO-02**: Hero section shows total CO2 saved in kg
+- [x] **HERO-03**: Hero section shows recycling rate as percentage
+- [x] **HERO-04**: Hero section shows total items sorted count
 - [ ] **HERO-05**: Hero metrics update automatically when new events arrive (1-2s polling)
-- [ ] **HERO-06**: Hero section displays motivational message ("Great job! You've diverted X kg of waste today.")
-- [ ] **HERO-07**: Hero section has illustrated eco background (sky, clouds, globe, floating leaves)
+- [x] **HERO-06**: Hero section displays motivational message ("Great job! You've diverted X kg of waste today.")
+- [x] **HERO-07**: Hero section has illustrated eco background (sky, clouds, globe, floating leaves)
 
 ### Live Feed
 
@@ -100,10 +100,10 @@
 
 ### Visual Design
 
-- [ ] **VISL-01**: Dashboard uses eco-tech color palette (green primary, teal/blue accents, white cards)
+- [x] **VISL-01**: Dashboard uses eco-tech color palette (green primary, teal/blue accents, white cards)
 - [x] **VISL-02**: UI uses shadcn/ui components with consistent styling
-- [ ] **VISL-03**: Typography is clean with strong visual hierarchy
-- [ ] **VISL-04**: Cards use rounded corners, subtle shadows, adequate whitespace
+- [x] **VISL-03**: Typography is clean with strong visual hierarchy
+- [x] **VISL-04**: Cards use rounded corners, subtle shadows, adequate whitespace
 - [ ] **VISL-05**: Overall aesthetic is premium SaaS, not cartoonish or sterile
 
 ## v2 Requirements
@@ -143,19 +143,19 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | DASH-01 | Phase 1 | Complete |
-| DASH-02 | Phase 2 | Pending |
+| DASH-02 | Phase 2 | Complete |
 | DASH-03 | Phase 3 | Pending |
 | DASH-04 | Phase 4 | Pending |
 | DASH-05 | Phase 4 | Pending |
 | DASH-06 | Phase 4 | Pending |
 | DASH-07 | Phase 4 | Pending |
-| HERO-01 | Phase 2 | Pending |
-| HERO-02 | Phase 2 | Pending |
-| HERO-03 | Phase 2 | Pending |
-| HERO-04 | Phase 2 | Pending |
+| HERO-01 | Phase 2 | Complete |
+| HERO-02 | Phase 2 | Complete |
+| HERO-03 | Phase 2 | Complete |
+| HERO-04 | Phase 2 | Complete |
 | HERO-05 | Phase 6 | Pending |
-| HERO-06 | Phase 2 | Pending |
-| HERO-07 | Phase 2 | Pending |
+| HERO-06 | Phase 2 | Complete |
+| HERO-07 | Phase 2 | Complete |
 | FEED-01 | Phase 3 | Pending |
 | FEED-02 | Phase 3 | Pending |
 | FEED-03 | Phase 3 | Pending |
@@ -196,10 +196,10 @@
 | SEED-01 | Phase 5 | Pending |
 | SEED-02 | Phase 5 | Pending |
 | SEED-03 | Phase 5 | Pending |
-| VISL-01 | Phase 2 | Pending |
+| VISL-01 | Phase 2 | Complete |
 | VISL-02 | Phase 1 | Complete |
-| VISL-03 | Phase 2 | Pending |
-| VISL-04 | Phase 2 | Pending |
+| VISL-03 | Phase 2 | Complete |
+| VISL-04 | Phase 2 | Complete |
 | VISL-05 | Phase 10 | Pending |
 
 **Coverage:**
