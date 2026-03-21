@@ -49,10 +49,10 @@ Plans:
   3. Hero displays motivational message ("Great job! You've diverted X kg of waste today.") with illustrated eco background (sky, clouds, globe, leaves)
   4. Dashboard uses the eco-tech color palette (green primary, teal/blue accents, white cards)
   5. Typography is clean with strong visual hierarchy, cards have rounded corners and adequate whitespace
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 02-01: TBD
+- [ ] 02-01-PLAN.md — Hero impact section with motivational message, SVG illustration, and 3 stat cards
 
 ### Phase 3: Live Feed Components
 **Goal**: Users can see the most recently sorted item with its image, classification details, and a scrollable activity log
@@ -64,7 +64,7 @@ Plans:
   3. Recent activity list shows the last 10+ items with thumbnails below or beside the latest item
   4. The newest event is visually highlighted with a green status dot indicator
   5. Live feed displays "Equivalent to planting X trees" environmental translation badge
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
 - [ ] 03-01: TBD
@@ -79,7 +79,7 @@ Plans:
   3. Model performance card shows average confidence, uncertain prediction rate, and fallback/default bin rate
   4. Recent sorting history list is visible on the dashboard homepage
   5. All sections render with mock data and look cohesive with the existing hero and live feed
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
 - [ ] 04-01: TBD
@@ -96,7 +96,7 @@ Plans:
   4. sort_events and devices tables exist in Supabase Postgres with all specified columns
   5. Supabase Storage bucket is configured and event images are stored and retrievable via URL
   6. Seed script populates the database with realistic mock events and sample images for demo without Pi hardware
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
 - [ ] 05-01: TBD
@@ -113,7 +113,7 @@ Plans:
   3. Live feed refreshes automatically, showing new events with images from Supabase Storage
   4. Waste composition chart updates when new events arrive
   5. Adding a new event via POST /events causes all dashboard sections to reflect the change within 2 seconds
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
 - [ ] 06-01: TBD
@@ -127,7 +127,7 @@ Plans:
   1. Analytics page shows deeper category breakdown charts beyond the homepage summary
   2. Analytics page shows time-based sorting trend charts (volume over time)
   3. Analytics page shows a recent event list with filtering capability
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
 - [ ] 07-01: TBD
@@ -140,7 +140,7 @@ Plans:
   1. Impact page shows total CO2 saved with environmental equivalents (trees saved, miles driven avoided)
   2. Impact page shows total waste diverted with tangible comparisons (e.g., trash bags, elephants)
   3. Impact metrics are visually inspiring, large, and prominent -- not buried in tables
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
 - [ ] 08-01: TBD
@@ -154,7 +154,7 @@ Plans:
   2. Model page shows uncertain rate, fallback rate details, and a confidence distribution chart
   3. Settings page shows registered device metadata (name, location, status)
   4. Settings page allows viewing device configuration
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
 - [ ] 09-01: TBD
@@ -168,7 +168,7 @@ Plans:
   1. Overall aesthetic is premium SaaS -- not cartoonish, not sterile -- consistently across all pages
   2. The demo loop works: adding an event causes hero metrics, live feed, waste breakdown, and charts to update within 2 seconds
   3. No visual inconsistencies, broken layouts, or placeholder content remain
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
 - [ ] 10-01: TBD
