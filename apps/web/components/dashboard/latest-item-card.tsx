@@ -37,6 +37,7 @@ export function LatestItemCard({ event }: LatestItemCardProps) {
           <time
             dateTime={event.timestamp}
             className="text-sm text-muted-foreground"
+            suppressHydrationWarning
           >
             {formatRelativeTime(event.timestamp)}
           </time>

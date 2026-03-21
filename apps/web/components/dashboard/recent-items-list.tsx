@@ -49,6 +49,7 @@ export function RecentItemsList({ events }: RecentItemsListProps) {
               <time
                 dateTime={event.timestamp}
                 className="text-xs text-muted-foreground whitespace-nowrap"
+                suppressHydrationWarning
               >
                 {formatRelativeTime(event.timestamp)}
               </time>
