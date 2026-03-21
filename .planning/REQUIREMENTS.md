@@ -12,8 +12,8 @@
 - [x] **DASH-03**: Dashboard homepage displays prominent live feed section with latest sorted item
 - [x] **DASH-04**: Top bar displays KPI chip strip (Total Items, Recycling Rate, Avg Confidence, Fallback Rate) always visible
 - [x] **DASH-05**: Dashboard homepage displays waste composition chart with "View Full Analytics →" link
-- [ ] **DASH-06**: Dashboard homepage displays model performance card with confidence distribution bar
-- [ ] **DASH-07**: Dashboard homepage displays recent sorting history list with thumbnails
+- [x] **DASH-06**: Dashboard homepage displays model performance card with confidence distribution bar
+- [x] **DASH-07**: Dashboard homepage displays recent sorting history list with thumbnails
 
 ### Hero Impact
 
@@ -43,9 +43,9 @@
 
 ### Model Performance
 
-- [ ] **MODL-01**: Model summary shows average confidence score
-- [ ] **MODL-02**: Model summary shows uncertain prediction rate
-- [ ] **MODL-03**: Model summary shows fallback/default bin rate
+- [x] **MODL-01**: Model summary shows average confidence score
+- [x] **MODL-02**: Model summary shows uncertain prediction rate
+- [x] **MODL-03**: Model summary shows fallback/default bin rate
 
 ### Analytics Page
 
@@ -147,8 +147,8 @@
 | DASH-03 | Phase 3 | Complete |
 | DASH-04 | Phase 4 | Complete |
 | DASH-05 | Phase 4 | Complete |
-| DASH-06 | Phase 4 | Pending |
-| DASH-07 | Phase 4 | Pending |
+| DASH-06 | Phase 4 | Complete |
+| DASH-07 | Phase 4 | Complete |
 | HERO-01 | Phase 2 | Complete |
 | HERO-02 | Phase 2 | Complete |
 | HERO-03 | Phase 2 | Complete |
@@ -166,9 +166,9 @@
 | WSTE-01 | Phase 4 | Complete |
 | WSTE-02 | Phase 4 | Complete |
 | WSTE-03 | Phase 6 | Pending |
-| MODL-01 | Phase 4 | Pending |
-| MODL-02 | Phase 4 | Pending |
-| MODL-03 | Phase 4 | Pending |
+| MODL-01 | Phase 4 | Complete |
+| MODL-02 | Phase 4 | Complete |
+| MODL-03 | Phase 4 | Complete |
 | ANLY-01 | Phase 7 | Pending |
 | ANLY-02 | Phase 7 | Pending |
 | ANLY-03 | Phase 7 | Pending |

@@ -84,7 +84,7 @@ Plans:
 
 Plans:
 - [x] 04-01-PLAN.md — Metrics computation library, KPI chip strip in top bar, waste composition donut chart card
-- [ ] 04-02-PLAN.md — Model performance card with confidence distribution bar, dashboard page wiring
+- [x] 04-02-PLAN.md — Model performance card with confidence distribution bar, dashboard page wiring
 
 ### Phase 5: Backend API and Database
 **Goal**: A running FastAPI backend with all endpoints, Supabase Postgres tables, image storage, and seed data for demo
