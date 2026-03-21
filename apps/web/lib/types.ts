@@ -30,3 +30,35 @@ export interface SortEvent {
   readonly fallback_used: boolean;
   readonly source_device_id: string;
 }
+
+/**
+ * GET /metrics response.
+ * Mirrors backend apps/api/schemas.py MetricsResponse field-for-field.
+ */
+export interface MetricsData {
+  readonly total_items: number;
+  readonly recycling_rate: number;
+  readonly co2_saved_kg: number;
+  readonly waste_diverted_kg: number;
+  readonly avg_confidence: number;
+  readonly uncertain_rate: number;
+  readonly fallback_rate: number;
+}
+
+/**
+ * Single category entry in breakdown response.
+ * Mirrors backend apps/api/schemas.py CategoryBreakdown.
+ */
+export interface CategoryBreakdown {
+  readonly label: string;
+  readonly count: number;
+  readonly percentage: number;
+}
+
+/**
+ * GET /metrics/breakdown response.
+ * Mirrors backend apps/api/schemas.py BreakdownResponse.
+ */
+export interface BreakdownData {
+  readonly categories: readonly CategoryBreakdown[];
+}
