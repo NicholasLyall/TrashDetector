@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from apps.api.config import settings
-from apps.api.routers import health
+from apps.api.routers import devices, events, health, metrics
 
 app = FastAPI(
     title="Smart Waste Intelligence Platform API",
@@ -21,10 +21,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Health check
+# Route registration
 app.include_router(health.router)
-
-# Placeholder includes for future plans:
-# app.include_router(events.router)   # Plan 02
-# app.include_router(metrics.router)  # Plan 02
-# app.include_router(devices.router)  # Plan 02
+app.include_router(events.router)
+app.include_router(metrics.router)
+app.include_router(devices.router)
