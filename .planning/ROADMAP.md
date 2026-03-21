@@ -64,10 +64,11 @@ Plans:
   3. Recent activity list shows the last 10+ items with thumbnails below or beside the latest item
   4. The newest event is visually highlighted with a green status dot indicator
   5. Live feed displays "Equivalent to planting X trees" environmental translation badge
-**Plans**: 1 plan
+**Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: TBD
+- [ ] 03-01-PLAN.md — Data foundation: types, category config, relative time formatter, mock events, SVG illustrations
+- [ ] 03-02-PLAN.md — Feed components (LatestItemCard, RecentItemsList, LiveFeedSection) and dashboard page integration
 
 ### Phase 4: Dashboard Supporting Sections
 **Goal**: Users see the full dashboard homepage with waste breakdown chart, model performance card, KPI strip, and sorting history
@@ -183,7 +184,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 |-------|----------------|--------|-----------|
 | 1. Frontend Shell and Navigation | 2/2 | Complete | 2026-03-21 |
 | 2. Hero Impact Section | 1/1 | Complete | 2026-03-21 |
-| 3. Live Feed Components | 0/1 | Not started | - |
+| 3. Live Feed Components | 0/2 | Not started | - |
 | 4. Dashboard Supporting Sections | 0/2 | Not started | - |
 | 5. Backend API and Database | 3/3 | Complete | 2026-03-21 |
 | 6. Data Integration and Polling | 0/2 | Not started | - |
