@@ -140,12 +140,12 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | DASH-01 | Phase 1 | Pending |
-| DASH-02 | Phase 1 | Pending |
-| DASH-03 | Phase 1 | Pending |
-| DASH-04 | Phase 1 | Pending |
-| DASH-05 | Phase 1 | Pending |
-| DASH-06 | Phase 1 | Pending |
-| DASH-07 | Phase 1 | Pending |
+| DASH-02 | Phase 2 | Pending |
+| DASH-03 | Phase 3 | Pending |
+| DASH-04 | Phase 4 | Pending |
+| DASH-05 | Phase 4 | Pending |
+| DASH-06 | Phase 4 | Pending |
+| DASH-07 | Phase 4 | Pending |
 | HERO-01 | Phase 2 | Pending |
 | HERO-02 | Phase 2 | Pending |
 | HERO-03 | Phase 2 | Pending |
@@ -197,10 +197,10 @@
 | VISL-05 | Phase 10 | Pending |
 
 **Coverage:**
-- v1 requirements: 53 total
-- Mapped to phases: 53
-- Unmapped: 0 ✓
+- v1 requirements: 56 total
+- Mapped to phases: 56
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-21*
-*Last updated: 2026-03-21 after initial definition*
+*Last updated: 2026-03-21 after roadmap creation (phase assignments refined)*
