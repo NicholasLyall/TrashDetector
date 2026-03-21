@@ -16,13 +16,15 @@ When a user drops trash into the sorter, the dashboard updates within 2 seconds 
 - [x] shadcn/ui components with consistent styling — Validated in Phase 1: Frontend Shell and Navigation
 - [x] Hero impact section showing CO2 saved, waste diverted, recycling rate, total items — Validated in Phase 2: Hero Impact Section
 
+- [x] Prominent live feed with latest sorted item image, label, confidence, bin badge — Validated in Phase 3: Live Feed Components
+- [x] Recent sorting history list — Validated in Phase 3: Live Feed Components
+
 ### Active
-- [ ] Prominent live feed with latest sorted item image, label, confidence, bin badge
 - [ ] Real-time dashboard updates via polling (1-2 second refresh)
 - [ ] Waste composition breakdown visualization (pie/bar chart)
 - [ ] Model performance summary (avg confidence, uncertain rate, fallback rate)
 - [x] Left sidebar SaaS navigation (Dashboard, Analytics, Impact, Model, Settings) — see Validated
-- [ ] Recent sorting history list
+
 - [ ] FastAPI backend with event ingestion, metrics, and breakdown endpoints
 - [ ] Supabase Postgres schema (sort_events, devices tables)
 - [ ] Supabase Storage for captured item images
