@@ -7,7 +7,7 @@
 
 ### Dashboard Layout
 
-- [ ] **DASH-01**: App has a left sidebar with "ECO DASHBOARD" branding, nav icons for Dashboard, Analytics, Impact, Model, Settings, and Admin user at bottom
+- [x] **DASH-01**: App has a left sidebar with "ECO DASHBOARD" branding, nav icons for Dashboard, Analytics, Impact, Model, Settings, and Admin user at bottom
 - [ ] **DASH-02**: Dashboard homepage displays hero impact section as first visible element above the fold
 - [ ] **DASH-03**: Dashboard homepage displays prominent live feed section with latest sorted item
 - [ ] **DASH-04**: Top bar displays KPI chip strip (Total Items, Recycling Rate, Avg Confidence, Fallback Rate) always visible
@@ -142,7 +142,7 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DASH-01 | Phase 1 | Pending |
+| DASH-01 | Phase 1 | Complete |
 | DASH-02 | Phase 2 | Pending |
 | DASH-03 | Phase 3 | Pending |
 | DASH-04 | Phase 4 | Pending |
