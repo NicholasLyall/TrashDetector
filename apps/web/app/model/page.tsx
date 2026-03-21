@@ -1,22 +1,22 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function DashboardPage() {
+export default function ModelPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Model</h1>
         <p className="mt-1 text-gray-500">
-          Real-time waste sorting intelligence
+          YOLO perception model performance
         </p>
       </div>
       <Card>
         <CardHeader>
-          <CardTitle>Welcome to Eco Dashboard</CardTitle>
+          <CardTitle>Model Performance</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-gray-600">
-            Hero impact section, live feed, waste composition, and model
-            performance will appear here.
+            Confidence banding, distribution charts, uncertain rate, and fallback
+            analysis will appear here.
           </p>
         </CardContent>
       </Card>
