@@ -9,7 +9,7 @@
 
 - [x] **DASH-01**: App has a left sidebar with "ECO DASHBOARD" branding, nav icons for Dashboard, Analytics, Impact, Model, Settings, and Admin user at bottom
 - [x] **DASH-02**: Dashboard homepage displays hero impact section as first visible element above the fold
-- [ ] **DASH-03**: Dashboard homepage displays prominent live feed section with latest sorted item
+- [x] **DASH-03**: Dashboard homepage displays prominent live feed section with latest sorted item
 - [ ] **DASH-04**: Top bar displays KPI chip strip (Total Items, Recycling Rate, Avg Confidence, Fallback Rate) always visible
 - [ ] **DASH-05**: Dashboard homepage displays waste composition chart with "View Full Analytics →" link
 - [ ] **DASH-06**: Dashboard homepage displays model performance card with confidence distribution bar
@@ -27,11 +27,11 @@
 
 ### Live Feed
 
-- [ ] **FEED-01**: Live feed shows the latest sorted item with large image preview
+- [x] **FEED-01**: Live feed shows the latest sorted item with large image preview
 - [x] **FEED-02**: Live feed shows item label, color-coded bin badge (green=Recycled, brown=Composted, red=Trash), and confidence score
 - [x] **FEED-03**: Live feed shows relative timestamp for each item (e.g., "2s", "14s ago")
-- [ ] **FEED-04**: Live feed shows a recent activity list with thumbnails, name, confidence, badge, and timestamp
-- [ ] **FEED-05**: Live feed highlights newest event with green status dot indicator
+- [x] **FEED-04**: Live feed shows a recent activity list with thumbnails, name, confidence, badge, and timestamp
+- [x] **FEED-05**: Live feed highlights newest event with green status dot indicator
 - [ ] **FEED-06**: Live feed refreshes automatically every 1-2 seconds
 - [x] **FEED-07**: Live feed displays "Equivalent to planting X trees" environmental translation badge
 
@@ -144,7 +144,7 @@
 |-------------|-------|--------|
 | DASH-01 | Phase 1 | Complete |
 | DASH-02 | Phase 2 | Complete |
-| DASH-03 | Phase 3 | Pending |
+| DASH-03 | Phase 3 | Complete |
 | DASH-04 | Phase 4 | Pending |
 | DASH-05 | Phase 4 | Pending |
 | DASH-06 | Phase 4 | Pending |
@@ -156,11 +156,11 @@
 | HERO-05 | Phase 6 | Pending |
 | HERO-06 | Phase 2 | Complete |
 | HERO-07 | Phase 2 | Complete |
-| FEED-01 | Phase 3 | Pending |
+| FEED-01 | Phase 3 | Complete |
 | FEED-02 | Phase 3 | Complete |
 | FEED-03 | Phase 3 | Complete |
-| FEED-04 | Phase 3 | Pending |
-| FEED-05 | Phase 3 | Pending |
+| FEED-04 | Phase 3 | Complete |
+| FEED-05 | Phase 3 | Complete |
 | FEED-06 | Phase 6 | Pending |
 | FEED-07 | Phase 3 | Complete |
 | WSTE-01 | Phase 4 | Pending |

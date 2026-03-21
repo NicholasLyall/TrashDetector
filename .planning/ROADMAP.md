@@ -68,7 +68,7 @@ Plans:
 
 Plans:
 - [x] 03-01-PLAN.md — Data foundation: types, category config, relative time formatter, mock events, SVG illustrations
-- [ ] 03-02-PLAN.md — Feed components (LatestItemCard, RecentItemsList, LiveFeedSection) and dashboard page integration
+- [x] 03-02-PLAN.md — Feed components (LatestItemCard, RecentItemsList, LiveFeedSection) and dashboard page integration
 
 ### Phase 4: Dashboard Supporting Sections
 **Goal**: Users see the full dashboard homepage with waste breakdown chart, model performance card, KPI strip, and sorting history
