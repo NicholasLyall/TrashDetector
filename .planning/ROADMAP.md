@@ -80,11 +80,11 @@ Plans:
   3. Model performance card shows average confidence, uncertain prediction rate, and fallback/default bin rate
   4. Recent sorting history list is visible on the dashboard homepage
   5. All sections render with mock data and look cohesive with the existing hero and live feed
-**Plans**: 1 plan
+**Plans**: 2 plans
 
 Plans:
-- [ ] 04-01: TBD
-- [ ] 04-02: TBD
+- [ ] 04-01-PLAN.md — Metrics computation library, KPI chip strip in top bar, waste composition donut chart card
+- [ ] 04-02-PLAN.md — Model performance card with confidence distribution bar, dashboard page wiring
 
 ### Phase 5: Backend API and Database
 **Goal**: A running FastAPI backend with all endpoints, Supabase Postgres tables, image storage, and seed data for demo
