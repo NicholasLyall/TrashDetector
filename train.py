@@ -55,7 +55,7 @@ def run_phase(model, train_loader, val_loader, epochs, lr, device, phase_name):
     criterion = nn.CrossEntropyLoss()
 
     best_val_acc = 0
-    best_path = MODEL_DIR / "best_model.pth"
+    best_path = MODEL_DIR / "best_model_v2.pth"
 
     print(f"\n{'='*50}")
     print(f"Phase: {phase_name} — {epochs} epochs, lr={lr}")
@@ -84,17 +84,21 @@ def main():
 
     train_loader, val_loader = make_dataloaders(DATA_DIR, batch_size=BATCH_SIZE, num_workers=NUM_WORKERS)
 
-    # Phase 1: train classifier head only
-    model = build_model(freeze_backbone=True).to(device)
+    # Phase 1: train classifier head only (reuse old backbone if available)
+    old_weights = MODEL_DIR / "best_model.pth"
+    model = build_model(
+        freeze_backbone=True,
+        weights_path=old_weights if old_weights.exists() else None
+    ).to(device)
     run_phase(model, train_loader, val_loader, EPOCHS_HEAD, LR_HEAD, device, "Head only")
 
     # Phase 2: fine-tune full network
-    model.load_state_dict(torch.load(MODEL_DIR / "best_model.pth"))
+    model.load_state_dict(torch.load(MODEL_DIR / "best_model_v2.pth"))
     unfreeze_model(model)
     run_phase(model, train_loader, val_loader, EPOCHS_FINETUNE, LR_FINETUNE, device, "Full fine-tune")
 
     # Final evaluation with per-class report
-    model.load_state_dict(torch.load(MODEL_DIR / "best_model.pth"))
+    model.load_state_dict(torch.load(MODEL_DIR / "best_model_v2.pth"))
     criterion = nn.CrossEntropyLoss()
     _, final_acc, preds, labels = evaluate(model, val_loader, criterion, device)
     print(f"\nFinal val accuracy: {final_acc:.3f}")

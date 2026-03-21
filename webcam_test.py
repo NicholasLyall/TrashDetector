@@ -10,7 +10,7 @@ from config import MODEL_DIR, IMG_SIZE, BINS, DEVICE
 # Load model
 device = torch.device(DEVICE if torch.cuda.is_available() else "cpu")
 model = build_model(freeze_backbone=False)
-model.load_state_dict(torch.load(MODEL_DIR / "best_model.pth", map_location=device))
+model.load_state_dict(torch.load(MODEL_DIR / "best_model_v2.pth", map_location=device))
 model.eval().to(device)
 
 transform = transforms.Compose([
@@ -21,16 +21,16 @@ transform = transforms.Compose([
 ])
 
 BIN_COLORS = {
-    "glass":      (255, 200, 0),
-    "recyclable": (0, 200, 0),
-    "organic":    (0, 180, 255),
-    "trash":      (60, 60, 60),
+    "paper_cardboard": (0, 180, 255),
+    "metal_glass":     (255, 200, 0),
+    "plastic":         (0, 200, 0),
+    "trash":           (60, 60, 60),
 }
 
 # How much of the crop needs to change to count as an object (tune this)
-MOTION_THRESHOLD = 0.04  # 8% of pixels
+MOTION_THRESHOLD = 0.01  # 8% of pixels
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(2)
 print("Webcam running — press Q to quit, R to recapture background")
 
 # Let camera auto-exposure stabilise before capturing background
@@ -71,7 +71,7 @@ while True:
     # --- Motion detection (fixed background diff) ---
     gray_crop = cv2.GaussianBlur(cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY), (5, 5), 0)
     diff = cv2.absdiff(gray_crop, background)
-    _, fg_mask = cv2.threshold(diff, 50, 255, cv2.THRESH_BINARY)
+    _, fg_mask = cv2.threshold(diff, 8, 255, cv2.THRESH_BINARY)
     changed_ratio = np.count_nonzero(fg_mask) / fg_mask.size
     object_present = changed_ratio > MOTION_THRESHOLD
 
