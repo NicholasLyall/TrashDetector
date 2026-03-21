@@ -1,0 +1,16 @@
+# Dataset — too large for git
+data/
+realwaste-main/
+
+# Trained model weights
+models/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# OS
+.DS_Store
+Thumbs.db

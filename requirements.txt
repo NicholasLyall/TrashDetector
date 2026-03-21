@@ -1,0 +1,10 @@
+# Install PyTorch first (CUDA 12.8 for RTX 5050):
+# pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+
+timm==1.0.9
+Pillow
+matplotlib
+scikit-learn
+tqdm
+onnx
+onnxruntime
