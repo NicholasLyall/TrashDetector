@@ -33,15 +33,15 @@ Declared values (multiples of 4):
 
 | Token | Value | Usage in This Phase |
 |-------|-------|---------------------|
-| xs | 4px | Icon-to-text gap in badges, status dot sizing |
-| sm | 8px | Badge internal padding, thumbnail gap |
+| xs | 4px | Icon-to-text gap in badges |
+| sm | 8px | Badge internal padding, thumbnail gap, status dot sizing (h-2 w-2) |
 | md | 16px | Card internal padding, grid gap between feed items |
 | lg | 24px | Section padding inside LiveFeedSection card |
 | xl | 32px | Gap between latest-item card and recent-items list |
 | 2xl | 48px | Not used this phase |
 | 3xl | 64px | Not used this phase |
 
-Exceptions: Status dot is 10px (2.5 * 4px) for visibility at small size -- acceptable rounding within the system.
+No exceptions. All values are multiples of 4.
 
 Source: Established in Phase 2 (`hero-impact-section.tsx` uses `gap-3` = 12px, `gap-4` = 16px, `p-4` = 16px, `mt-8` = 32px). Scale confirmed.
 
@@ -52,9 +52,11 @@ Source: Established in Phase 2 (`hero-impact-section.tsx` uses `gap-3` = 12px, `
 | Role | Size | Weight | Line Height | Usage in This Phase |
 |------|------|--------|-------------|---------------------|
 | Body | 14px | 400 (regular) | 1.5 | Recent item name, confidence text, timestamp, tree badge text |
-| Label | 12px | 500 (medium) | 1.4 | Badge text ("Recycling (Paper)"), "Simulated" overlay, section sublabels |
+| Label | 12px | 400 (regular) | 1.4 | Badge text ("Recycling (Paper)"), "Simulated" overlay, section sublabels |
 | Heading | 20px | 700 (bold) | 1.2 | "Live Feed" section title |
 | Display | 28px | 700 (bold) | 1.2 | Not used this phase (reserved for hero/page titles) |
+
+2 weights only: 400 (regular) for body and label text, 700 (bold) for headings.
 
 Source: Phase 2 patterns -- `text-[20px] font-bold leading-[1.2]` for headings, `text-[14px]` for labels. Geist Sans from `app/layout.tsx`.
 
@@ -164,7 +166,7 @@ Source: RESEARCH.md Pitfall 5, mockup reference (live feed ~60% left).
 Card (full height of grid cell)
   CardHeader
     flex items-center gap-2
-      [StatusDot]               -- 10px green dot with pulse
+      [StatusDot]               -- 8px green dot (h-2 w-2) with pulse
       [CardTitle "Live Feed"]   -- 20px bold
       [TreeBadge]               -- 14px muted, TreePine icon
   CardContent
@@ -214,7 +216,7 @@ Source: CONTEXT.md D-09 (8-10 events), RESEARCH.md Open Question 2.
 
 ### Status Dot Pulse
 
-- Element: 10px circle, `bg-green-500`
+- Element: 8px circle (`h-2 w-2`), `bg-green-500`
 - Animation: CSS `animate-ping` on an overlapping circle at 75% opacity, solid circle underneath
 - Reduced motion: `motion-reduce:hidden` on the ping layer
 - Purpose: Communicates "system is alive" -- static in this phase (no actual polling until Phase 6)
@@ -313,7 +315,7 @@ Source: CONTEXT.md D-09, RESEARCH.md Pitfall 3 (stale timestamps), Open Question
 - Max complexity: 30 lines of SVG markup per illustration
 - Use `fill` not `stroke` for primary shapes (scales well at both 200px and 40px per D-07)
 - All illustrations wrapped in a shared `CategoryIllustration` component that accepts `category` and `size` props
-- "Simulated" badge: absolute positioned, `bg-gray-500/70 text-white text-[10px] font-medium px-1.5 py-0.5 rounded`
+- "Simulated" badge: absolute positioned, `bg-gray-500/70 text-white text-xs px-1.5 py-0.5 rounded`
 
 ### Per-Category Illustrations
 
