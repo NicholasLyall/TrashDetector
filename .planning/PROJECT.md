@@ -20,8 +20,8 @@ When a user drops trash into the sorter, the dashboard updates within 2 seconds 
 - [x] Recent sorting history list — Validated in Phase 3: Live Feed Components
 
 ### Active
-- [ ] Real-time dashboard updates via polling (1-2 second refresh)
-- [ ] Waste composition breakdown visualization (pie/bar chart)
+- [x] Real-time dashboard updates via polling (1-2 second refresh) — Validated in Phase 6: Data Integration and Polling
+- [x] Waste composition breakdown visualization (pie/bar chart) — Validated in Phase 6: Data Integration and Polling
 - [ ] Model performance summary (avg confidence, uncertain rate, fallback rate)
 - [x] Left sidebar SaaS navigation (Dashboard, Analytics, Impact, Model, Settings) — see Validated
 
