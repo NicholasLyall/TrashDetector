@@ -135,3 +135,47 @@
     @apply font-sans;
   }
 }
+
+/* Hero impact section animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(-6px);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes cloud-drift {
+  0%, 100% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  .animate-cloud-drift {
+    animation: cloud-drift 10s ease-in-out infinite;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-cloud-drift {
+    animation: none;
+  }
+}
+
+/* Hero card gradient background */
+.hero-gradient {
+  background: linear-gradient(to bottom, hsl(199 89% 90%), hsl(174 62% 88%), hsl(142 71% 90%));
+}
+.dark .hero-gradient {
+  background: linear-gradient(to bottom, hsl(199 89% 15%), hsl(174 62% 12%), hsl(142 71% 15%));
+}
