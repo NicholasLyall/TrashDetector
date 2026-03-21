@@ -118,7 +118,7 @@ Plans:
 
 Plans:
 - [x] 06-01-PLAN.md — Install SWR, create API types, fetcher, SWR provider, skeleton component, wire into layout
-- [ ] 06-02-PLAN.md — Create hooks (useMetrics, useEvents, useBreakdown), rewire hero + feed + waste chart from mock to live data
+- [x] 06-02-PLAN.md — Create hooks (useMetrics, useEvents, useBreakdown), rewire hero + feed + waste chart from mock to live data
 
 ### Phase 7: Analytics Page
 **Goal**: Users can explore deeper category breakdowns, time-based trends, and filter through sorting history

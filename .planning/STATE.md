@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 06-01-PLAN.md
-last_updated: "2026-03-21T23:39:13.225Z"
+stopped_at: Completed 06-02-PLAN.md
+last_updated: "2026-03-21T23:45:43.600Z"
 progress:
   total_phases: 10
-  completed_phases: 5
+  completed_phases: 6
   total_plans: 12
-  completed_plans: 11
+  completed_plans: 12
 ---
 
 # Project State
@@ -57,6 +57,7 @@ Plan: 2 of 2
 | Phase 04 P01 | 3min | 3 tasks | 5 files |
 | Phase 04 P02 | 2min | 2 tasks | 2 files |
 | Phase 06 P01 | 2min | 2 tasks | 7 files |
+| Phase 06 P02 | 3min | 4 tasks | 12 files |
 
 ## Accumulated Context
 
@@ -93,6 +94,9 @@ Recent decisions affecting current work:
 - [Phase 06]: SWR global fetcher builds full URL from API_BASE_URL + path, matching SWR key convention
 - [Phase 06]: SWRProvider wraps outside TooltipProvider for broadest SWR context coverage
 - [Phase 06]: Type mirroring pattern: readonly interfaces match backend schemas.py field-for-field with snake_case
+- [Phase 06]: One SWR hook per endpoint: useMetrics, useEvents, useBreakdown each wrap a single SWR call
+- [Phase 06]: D-04 skeleton-to-empty-state delay: 5s setTimeout before BackendEmptyState prevents flash on slow connections
+- [Phase 06]: Conditional image rendering: event.image_url renders img tag, null falls back to CategoryIllustration
 
 ### Pending Todos
 
@@ -105,6 +109,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T23:39:13.221Z
-Stopped at: Completed 06-01-PLAN.md
+Last session: 2026-03-21T23:45:43.597Z
+Stopped at: Completed 06-02-PLAN.md
 Resume file: None

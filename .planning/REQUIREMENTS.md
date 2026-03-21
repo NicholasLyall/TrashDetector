@@ -21,7 +21,7 @@
 - [x] **HERO-02**: Hero section shows total CO2 saved in kg
 - [x] **HERO-03**: Hero section shows recycling rate as percentage
 - [x] **HERO-04**: Hero section shows total items sorted count
-- [ ] **HERO-05**: Hero metrics update automatically when new events arrive (1-2s polling)
+- [x] **HERO-05**: Hero metrics update automatically when new events arrive (1-2s polling)
 - [x] **HERO-06**: Hero section displays motivational message ("Great job! You've diverted X kg of waste today.")
 - [x] **HERO-07**: Hero section has illustrated eco background (sky, clouds, globe, floating leaves)
 
@@ -32,14 +32,14 @@
 - [x] **FEED-03**: Live feed shows relative timestamp for each item (e.g., "2s", "14s ago")
 - [x] **FEED-04**: Live feed shows a recent activity list with thumbnails, name, confidence, badge, and timestamp
 - [x] **FEED-05**: Live feed highlights newest event with green status dot indicator
-- [ ] **FEED-06**: Live feed refreshes automatically every 1-2 seconds
+- [x] **FEED-06**: Live feed refreshes automatically every 1-2 seconds
 - [x] **FEED-07**: Live feed displays "Equivalent to planting X trees" environmental translation badge
 
 ### Waste Breakdown
 
 - [x] **WSTE-01**: Waste composition displayed as pie or donut chart
 - [x] **WSTE-02**: Chart shows category labels and percentages
-- [ ] **WSTE-03**: Chart updates when new events arrive
+- [x] **WSTE-03**: Chart updates when new events arrive
 
 ### Model Performance
 
@@ -88,9 +88,9 @@
 ### Data Integration
 
 - [x] **INTG-01**: Frontend polls backend every 1-2 seconds for fresh data
-- [ ] **INTG-02**: Hero metrics wired to live /metrics endpoint
-- [ ] **INTG-03**: Live feed wired to live /events endpoint with images from Supabase Storage
-- [ ] **INTG-04**: Charts wired to live /metrics/breakdown endpoint
+- [x] **INTG-02**: Hero metrics wired to live /metrics endpoint
+- [x] **INTG-03**: Live feed wired to live /events endpoint with images from Supabase Storage
+- [x] **INTG-04**: Charts wired to live /metrics/breakdown endpoint
 
 ### Seed Data
 
@@ -153,7 +153,7 @@
 | HERO-02 | Phase 2 | Complete |
 | HERO-03 | Phase 2 | Complete |
 | HERO-04 | Phase 2 | Complete |
-| HERO-05 | Phase 6 | Pending |
+| HERO-05 | Phase 6 | Complete |
 | HERO-06 | Phase 2 | Complete |
 | HERO-07 | Phase 2 | Complete |
 | FEED-01 | Phase 3 | Complete |
@@ -161,11 +161,11 @@
 | FEED-03 | Phase 3 | Complete |
 | FEED-04 | Phase 3 | Complete |
 | FEED-05 | Phase 3 | Complete |
-| FEED-06 | Phase 6 | Pending |
+| FEED-06 | Phase 6 | Complete |
 | FEED-07 | Phase 3 | Complete |
 | WSTE-01 | Phase 4 | Complete |
 | WSTE-02 | Phase 4 | Complete |
-| WSTE-03 | Phase 6 | Pending |
+| WSTE-03 | Phase 6 | Complete |
 | MODL-01 | Phase 4 | Complete |
 | MODL-02 | Phase 4 | Complete |
 | MODL-03 | Phase 4 | Complete |
@@ -190,9 +190,9 @@
 | DB-02 | Phase 5 | Complete |
 | DB-03 | Phase 5 | Complete |
 | INTG-01 | Phase 6 | Complete |
-| INTG-02 | Phase 6 | Pending |
-| INTG-03 | Phase 6 | Pending |
-| INTG-04 | Phase 6 | Pending |
+| INTG-02 | Phase 6 | Complete |
+| INTG-03 | Phase 6 | Complete |
+| INTG-04 | Phase 6 | Complete |
 | SEED-01 | Phase 5 | Complete |
 | SEED-02 | Phase 5 | Complete |
 | SEED-03 | Phase 5 | Complete |
