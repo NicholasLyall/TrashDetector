@@ -1,9 +1,13 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { LatestItemCard } from "@/components/dashboard/latest-item-card";
 import { RecentItemsList } from "@/components/dashboard/recent-items-list";
-import { sortEventsMockData } from "@/lib/mock-data";
+import { useEvents } from "@/hooks/use-events";
+import { FeedSkeleton } from "@/components/dashboard/feed-skeleton";
+import { StaleDataWarning } from "@/components/dashboard/stale-data-warning";
+import { BackendEmptyState } from "@/components/dashboard/backend-empty-state";
 import { calculateTreesEquivalent } from "@/lib/categories";
 import { TreePine } from "lucide-react";
 
@@ -12,15 +16,54 @@ import { TreePine } from "lucide-react";
  * green status dot, "Live Feed" header, tree equivalence badge,
  * latest item card, and recent items list.
  *
- * NOTE: With mock data, all events are passed to calculateTreesEquivalent.
- * When Phase 6 wires real data, this must filter to today's events only
- * before calling calculateTreesEquivalent (per D-10 daily scoping contract).
+ * Wired to useEvents hook polling GET /events?limit=20 every 2s.
+ * Tree equivalence filters to today's events only (D-10 daily scoping).
  */
 export function LiveFeedSection() {
-  const events = sortEventsMockData;
+  const { events: rawEvents, error, isLoading } = useEvents(20);
+  const [showEmptyState, setShowEmptyState] = useState(false);
+  const lastSuccessRef = useRef(Date.now());
+
+  useEffect(() => {
+    if (rawEvents && !error) {
+      lastSuccessRef.current = Date.now();
+    }
+  }, [rawEvents, error]);
+
+  useEffect(() => {
+    if (error && !rawEvents) {
+      const timer = setTimeout(() => setShowEmptyState(true), 5000);
+      return () => clearTimeout(timer);
+    }
+    setShowEmptyState(false);
+  }, [error, rawEvents]);
+
+  if (isLoading) return <FeedSkeleton />;
+
+  if (error && !rawEvents) {
+    if (!showEmptyState) return <FeedSkeleton />;
+    return (
+      <section aria-labelledby="live-feed-title">
+        <Card>
+          <CardContent className="py-8">
+            <BackendEmptyState />
+          </CardContent>
+        </Card>
+      </section>
+    );
+  }
+
+  const events = rawEvents ?? [];
+  const isStale = !!error && !!rawEvents;
+
   const latestEvent = events[0] ?? null;
   const recentEvents = events.slice(1);
-  const treesEquivalent = calculateTreesEquivalent(events);
+
+  // Filter to today's events before calculating tree equivalence (D-10)
+  const todayEvents = events.filter(
+    (e) => new Date(e.timestamp).toDateString() === new Date().toDateString()
+  );
+  const treesEquivalent = calculateTreesEquivalent(todayEvents);
 
   return (
     <section aria-labelledby="live-feed-title">
@@ -50,6 +93,8 @@ export function LiveFeedSection() {
         </CardHeader>
 
         <CardContent className="space-y-6">
+          {isStale && <StaleDataWarning lastUpdatedMs={lastSuccessRef.current} />}
+
           {latestEvent ? (
             <LatestItemCard event={latestEvent} />
           ) : (

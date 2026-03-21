@@ -19,8 +19,16 @@ export function LatestItemCard({ event }: LatestItemCardProps) {
   return (
     <Card className="ring-1 ring-foreground/5">
       <div className="flex flex-col sm:flex-row gap-4 p-4">
-        <div className="relative w-full sm:w-[200px] h-[200px] rounded-lg bg-muted/30 flex items-center justify-center">
-          <CategoryIllustration category={event.label} size="lg" />
+        <div className="relative w-full sm:w-[200px] h-[200px] rounded-lg bg-muted/30 flex items-center justify-center overflow-hidden">
+          {event.image_url ? (
+            <img
+              src={event.image_url}
+              alt={`Sorted ${event.label} item`}
+              className="h-full w-full object-cover rounded-lg"
+            />
+          ) : (
+            <CategoryIllustration category={event.label} size="lg" />
+          )}
         </div>
 
         <div className="flex-1 flex flex-col gap-2 justify-center">

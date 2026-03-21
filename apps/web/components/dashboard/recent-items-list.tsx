@@ -32,7 +32,15 @@ export function RecentItemsList({ events }: RecentItemsListProps) {
               }`}
             >
               <div className="h-10 w-10 shrink-0 rounded-md overflow-hidden bg-muted/30 flex items-center justify-center">
-                <CategoryIllustration category={event.label} size="sm" />
+                {event.image_url ? (
+                  <img
+                    src={event.image_url}
+                    alt={`Sorted ${event.label} item`}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <CategoryIllustration category={event.label} size="sm" />
+                )}
               </div>
 
               <div className="flex-1 min-w-0">
