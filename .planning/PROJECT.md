@@ -14,10 +14,9 @@ When a user drops trash into the sorter, the dashboard updates within 2 seconds 
 
 - [x] Left sidebar SaaS navigation (Dashboard, Analytics, Impact, Model, Settings) — Validated in Phase 1: Frontend Shell and Navigation
 - [x] shadcn/ui components with consistent styling — Validated in Phase 1: Frontend Shell and Navigation
+- [x] Hero impact section showing CO2 saved, waste diverted, recycling rate, total items — Validated in Phase 2: Hero Impact Section
 
 ### Active
-
-- [ ] Hero impact section showing CO2 saved, waste diverted, recycling rate, total items
 - [ ] Prominent live feed with latest sorted item image, label, confidence, bin badge
 - [ ] Real-time dashboard updates via polling (1-2 second refresh)
 - [ ] Waste composition breakdown visualization (pie/bar chart)
@@ -92,4 +91,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-21 after Phase 1 completion*
+*Last updated: 2026-03-21 after Phase 2 completion*
