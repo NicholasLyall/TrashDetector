@@ -95,7 +95,7 @@
 ### Seed Data
 
 - [x] **SEED-01**: Realistic seed data generator produces mock sort events with varied labels, confidence scores, and timestamps
-- [x] **SEED-02**: Seed data includes representative item images in Supabase Storage
+- [x] **SEED-02**: Seed data populates events with null image_url (real images come from Pi hardware)
 - [x] **SEED-03**: Seed script can populate database for demo without Pi hardware
 
 ### Visual Design
