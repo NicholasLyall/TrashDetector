@@ -36,7 +36,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Initialize Next.js project with TypeScript, Tailwind CSS, and shadcn/ui
+- [x] 01-01-PLAN.md — Initialize Next.js project with TypeScript, Tailwind CSS, and shadcn/ui
 - [ ] 01-02-PLAN.md — Build app shell with sidebar, top bar, routing, and placeholder pages
 
 ### Phase 2: Hero Impact Section
