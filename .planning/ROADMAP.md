@@ -96,12 +96,12 @@ Plans:
   4. sort_events and devices tables exist in Supabase Postgres with all specified columns
   5. Supabase Storage bucket is configured and event images are stored and retrievable via URL
   6. Seed script populates the database with realistic mock events and sample images for demo without Pi hardware
-**Plans**: 1 plan
+**Plans**: 3 plans
 
 Plans:
-- [ ] 05-01: TBD
-- [ ] 05-02: TBD
-- [ ] 05-03: TBD
+- [ ] 05-01-PLAN.md — FastAPI project skeleton with config, DB client, constants, schemas, health endpoint, SQL migration, and test infrastructure
+- [ ] 05-02-PLAN.md — All API endpoints (POST/GET events, metrics, breakdown, devices) with service layer and tests
+- [ ] 05-03-PLAN.md — Idempotent seed script for demo data with Supabase verification checkpoint
 
 ### Phase 6: Data Integration and Polling
 **Goal**: The dashboard is fully wired to the live backend -- all sections update automatically every 1-2 seconds
