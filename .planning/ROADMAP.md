@@ -155,11 +155,11 @@ Plans:
   2. Model page shows uncertain rate, fallback rate details, and a confidence distribution chart
   3. Settings page shows registered device metadata (name, location, status)
   4. Settings page allows viewing device configuration
-**Plans**: 1 plan
+**Plans**: 2 plans
 
 Plans:
-- [ ] 09-01: TBD
-- [ ] 09-02: TBD
+- [ ] 09-01-PLAN.md — Model detail page with confidence gauge, distribution chart, and detailed metric cards
+- [ ] 09-02-PLAN.md — Settings page with device list, metadata display, and configuration panel
 
 ### Phase 10: Visual Polish and Demo Readiness
 **Goal**: The product looks and feels like a premium climate-tech SaaS product, ready for judges
