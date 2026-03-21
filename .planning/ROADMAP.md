@@ -114,11 +114,11 @@ Plans:
   3. Live feed refreshes automatically, showing new events with images from Supabase Storage
   4. Waste composition chart updates when new events arrive
   5. Adding a new event via POST /events causes all dashboard sections to reflect the change within 2 seconds
-**Plans**: 1 plan
+**Plans**: 2 plans
 
 Plans:
-- [ ] 06-01: TBD
-- [ ] 06-02: TBD
+- [ ] 06-01-PLAN.md — Install SWR, create API types, fetcher, SWR provider, skeleton component, wire into layout
+- [ ] 06-02-PLAN.md — Create hooks (useMetrics, useEvents, useBreakdown), rewire hero + feed from mock to live data
 
 ### Phase 7: Analytics Page
 **Goal**: Users can explore deeper category breakdowns, time-based trends, and filter through sorting history
