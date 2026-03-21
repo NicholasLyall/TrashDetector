@@ -33,11 +33,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   1. App loads with a left sidebar showing navigation links for Dashboard, Analytics, Impact, Model, and Settings
   2. Clicking each nav item routes to the correct page (even if pages show placeholder content)
   3. UI uses shadcn/ui components with consistent styling across the shell
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
+- [ ] 01-01-PLAN.md — Initialize Next.js project with TypeScript, Tailwind CSS, and shadcn/ui
+- [ ] 01-02-PLAN.md — Build app shell with sidebar, top bar, routing, and placeholder pages
 
 ### Phase 2: Hero Impact Section
 **Goal**: Users immediately see inspiring environmental impact metrics as the first element on the dashboard
