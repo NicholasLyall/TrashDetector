@@ -87,7 +87,7 @@
 
 ### Data Integration
 
-- [ ] **INTG-01**: Frontend polls backend every 1-2 seconds for fresh data
+- [x] **INTG-01**: Frontend polls backend every 1-2 seconds for fresh data
 - [ ] **INTG-02**: Hero metrics wired to live /metrics endpoint
 - [ ] **INTG-03**: Live feed wired to live /events endpoint with images from Supabase Storage
 - [ ] **INTG-04**: Charts wired to live /metrics/breakdown endpoint
@@ -189,7 +189,7 @@
 | DB-01 | Phase 5 | Complete |
 | DB-02 | Phase 5 | Complete |
 | DB-03 | Phase 5 | Complete |
-| INTG-01 | Phase 6 | Pending |
+| INTG-01 | Phase 6 | Complete |
 | INTG-02 | Phase 6 | Pending |
 | INTG-03 | Phase 6 | Pending |
 | INTG-04 | Phase 6 | Pending |
