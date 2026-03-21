@@ -1,25 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { HeroImpactSection } from "@/components/dashboard/hero-impact-section";
 
 export default function DashboardPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-        <p className="mt-1 text-gray-500">
-          Real-time waste sorting intelligence
-        </p>
-      </div>
-      <Card>
-        <CardHeader>
-          <CardTitle>Welcome to Eco Dashboard</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-gray-600">
-            Hero impact section, live feed, waste composition, and model
-            performance will appear here.
-          </p>
-        </CardContent>
-      </Card>
+      <HeroImpactSection />
     </div>
   );
 }
