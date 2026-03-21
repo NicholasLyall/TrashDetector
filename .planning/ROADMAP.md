@@ -67,7 +67,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Data foundation: types, category config, relative time formatter, mock events, SVG illustrations
+- [x] 03-01-PLAN.md — Data foundation: types, category config, relative time formatter, mock events, SVG illustrations
 - [ ] 03-02-PLAN.md — Feed components (LatestItemCard, RecentItemsList, LiveFeedSection) and dashboard page integration
 
 ### Phase 4: Dashboard Supporting Sections

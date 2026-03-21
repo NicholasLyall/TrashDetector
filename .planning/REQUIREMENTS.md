@@ -28,12 +28,12 @@
 ### Live Feed
 
 - [ ] **FEED-01**: Live feed shows the latest sorted item with large image preview
-- [ ] **FEED-02**: Live feed shows item label, color-coded bin badge (green=Recycled, brown=Composted, red=Trash), and confidence score
-- [ ] **FEED-03**: Live feed shows relative timestamp for each item (e.g., "2s", "14s ago")
+- [x] **FEED-02**: Live feed shows item label, color-coded bin badge (green=Recycled, brown=Composted, red=Trash), and confidence score
+- [x] **FEED-03**: Live feed shows relative timestamp for each item (e.g., "2s", "14s ago")
 - [ ] **FEED-04**: Live feed shows a recent activity list with thumbnails, name, confidence, badge, and timestamp
 - [ ] **FEED-05**: Live feed highlights newest event with green status dot indicator
 - [ ] **FEED-06**: Live feed refreshes automatically every 1-2 seconds
-- [ ] **FEED-07**: Live feed displays "Equivalent to planting X trees" environmental translation badge
+- [x] **FEED-07**: Live feed displays "Equivalent to planting X trees" environmental translation badge
 
 ### Waste Breakdown
 
@@ -157,12 +157,12 @@
 | HERO-06 | Phase 2 | Complete |
 | HERO-07 | Phase 2 | Complete |
 | FEED-01 | Phase 3 | Pending |
-| FEED-02 | Phase 3 | Pending |
-| FEED-03 | Phase 3 | Pending |
+| FEED-02 | Phase 3 | Complete |
+| FEED-03 | Phase 3 | Complete |
 | FEED-04 | Phase 3 | Pending |
 | FEED-05 | Phase 3 | Pending |
 | FEED-06 | Phase 6 | Pending |
-| FEED-07 | Phase 3 | Pending |
+| FEED-07 | Phase 3 | Complete |
 | WSTE-01 | Phase 4 | Pending |
 | WSTE-02 | Phase 4 | Pending |
 | WSTE-03 | Phase 6 | Pending |
