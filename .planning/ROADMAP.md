@@ -83,7 +83,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Metrics computation library, KPI chip strip in top bar, waste composition donut chart card
+- [x] 04-01-PLAN.md — Metrics computation library, KPI chip strip in top bar, waste composition donut chart card
 - [ ] 04-02-PLAN.md — Model performance card with confidence distribution bar, dashboard page wiring
 
 ### Phase 5: Backend API and Database

@@ -10,8 +10,8 @@
 - [x] **DASH-01**: App has a left sidebar with "ECO DASHBOARD" branding, nav icons for Dashboard, Analytics, Impact, Model, Settings, and Admin user at bottom
 - [x] **DASH-02**: Dashboard homepage displays hero impact section as first visible element above the fold
 - [x] **DASH-03**: Dashboard homepage displays prominent live feed section with latest sorted item
-- [ ] **DASH-04**: Top bar displays KPI chip strip (Total Items, Recycling Rate, Avg Confidence, Fallback Rate) always visible
-- [ ] **DASH-05**: Dashboard homepage displays waste composition chart with "View Full Analytics →" link
+- [x] **DASH-04**: Top bar displays KPI chip strip (Total Items, Recycling Rate, Avg Confidence, Fallback Rate) always visible
+- [x] **DASH-05**: Dashboard homepage displays waste composition chart with "View Full Analytics →" link
 - [ ] **DASH-06**: Dashboard homepage displays model performance card with confidence distribution bar
 - [ ] **DASH-07**: Dashboard homepage displays recent sorting history list with thumbnails
 
@@ -37,8 +37,8 @@
 
 ### Waste Breakdown
 
-- [ ] **WSTE-01**: Waste composition displayed as pie or donut chart
-- [ ] **WSTE-02**: Chart shows category labels and percentages
+- [x] **WSTE-01**: Waste composition displayed as pie or donut chart
+- [x] **WSTE-02**: Chart shows category labels and percentages
 - [ ] **WSTE-03**: Chart updates when new events arrive
 
 ### Model Performance
@@ -145,8 +145,8 @@
 | DASH-01 | Phase 1 | Complete |
 | DASH-02 | Phase 2 | Complete |
 | DASH-03 | Phase 3 | Complete |
-| DASH-04 | Phase 4 | Pending |
-| DASH-05 | Phase 4 | Pending |
+| DASH-04 | Phase 4 | Complete |
+| DASH-05 | Phase 4 | Complete |
 | DASH-06 | Phase 4 | Pending |
 | DASH-07 | Phase 4 | Pending |
 | HERO-01 | Phase 2 | Complete |
@@ -163,8 +163,8 @@
 | FEED-05 | Phase 3 | Complete |
 | FEED-06 | Phase 6 | Pending |
 | FEED-07 | Phase 3 | Complete |
-| WSTE-01 | Phase 4 | Pending |
-| WSTE-02 | Phase 4 | Pending |
+| WSTE-01 | Phase 4 | Complete |
+| WSTE-02 | Phase 4 | Complete |
 | WSTE-03 | Phase 6 | Pending |
 | MODL-01 | Phase 4 | Pending |
 | MODL-02 | Phase 4 | Pending |
