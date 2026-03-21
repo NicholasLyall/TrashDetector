@@ -73,11 +73,11 @@
 ### Backend API
 
 - [x] **API-01**: GET /health returns service health status
-- [ ] **API-02**: POST /events accepts sort event with image upload and metadata
-- [ ] **API-03**: GET /events returns recent events sorted by newest first with limit parameter
-- [ ] **API-04**: GET /metrics returns aggregate metrics (total items, recycling rate, CO2 saved, waste diverted, avg confidence, uncertain rate, fallback rate)
-- [ ] **API-05**: GET /metrics/breakdown returns category counts and percentages
-- [ ] **API-06**: GET /devices returns registered source devices
+- [x] **API-02**: POST /events accepts sort event with image upload and metadata
+- [x] **API-03**: GET /events returns recent events sorted by newest first with limit parameter
+- [x] **API-04**: GET /metrics returns aggregate metrics (total items, recycling rate, CO2 saved, waste diverted, avg confidence, uncertain rate, fallback rate)
+- [x] **API-05**: GET /metrics/breakdown returns category counts and percentages
+- [x] **API-06**: GET /devices returns registered source devices
 
 ### Database
 
@@ -181,11 +181,11 @@
 | STNG-01 | Phase 9 | Pending |
 | STNG-02 | Phase 9 | Pending |
 | API-01 | Phase 5 | Complete |
-| API-02 | Phase 5 | Pending |
-| API-03 | Phase 5 | Pending |
-| API-04 | Phase 5 | Pending |
-| API-05 | Phase 5 | Pending |
-| API-06 | Phase 5 | Pending |
+| API-02 | Phase 5 | Complete |
+| API-03 | Phase 5 | Complete |
+| API-04 | Phase 5 | Complete |
+| API-05 | Phase 5 | Complete |
+| API-06 | Phase 5 | Complete |
 | DB-01 | Phase 5 | Complete |
 | DB-02 | Phase 5 | Complete |
 | DB-03 | Phase 5 | Complete |

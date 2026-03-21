@@ -100,7 +100,7 @@ Plans:
 
 Plans:
 - [x] 05-01-PLAN.md — FastAPI project skeleton with config, DB client, constants, schemas, health endpoint, SQL migration, and test infrastructure
-- [ ] 05-02-PLAN.md — All API endpoints (POST/GET events, metrics, breakdown, devices) with service layer and tests
+- [x] 05-02-PLAN.md — All API endpoints (POST/GET events, metrics, breakdown, devices) with service layer and tests
 - [ ] 05-03-PLAN.md — Idempotent seed script for demo data with Supabase verification checkpoint
 
 ### Phase 6: Data Integration and Polling

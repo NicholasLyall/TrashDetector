@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 05-01-PLAN.md
-last_updated: "2026-03-21T21:35:44.369Z"
+stopped_at: Completed 05-02-PLAN.md
+last_updated: "2026-03-21T21:40:59.144Z"
 progress:
   total_phases: 10
   completed_phases: 2
   total_plans: 6
-  completed_plans: 4
+  completed_plans: 5
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-21)
 ## Current Position
 
 Phase: 05 (backend-api-and-database) -- EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 
 ## Performance Metrics
 
@@ -50,6 +50,7 @@ Plan: 2 of 3
 | Phase 01 P02 | 2min | 2 tasks | 10 files |
 | Phase 02 P01 | 5min | 3 tasks | 5 files |
 | Phase 05 P01 | 3min | 2 tasks | 16 files |
+| Phase 05 P02 | 3min | 2 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -70,6 +71,8 @@ Recent decisions affecting current work:
 - [Phase 02]: Dashboard feature components organized in components/dashboard/ directory
 - [Phase 05]: Sync supabase create_client over async -- simpler for hackathon scale
 - [Phase 05]: Interface-first schemas -- all response models defined before endpoints exist
+- [Phase 05]: Service layer pattern: event_service.py and metrics_service.py separate business logic from router handlers
+- [Phase 05]: Mocked Supabase in tests via unittest.mock.patch on router-level imports for isolation
 
 ### Pending Todos
 
@@ -82,6 +85,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T21:35:44.365Z
-Stopped at: Completed 05-01-PLAN.md
+Last session: 2026-03-21T21:40:59.141Z
+Stopped at: Completed 05-02-PLAN.md
 Resume file: None
