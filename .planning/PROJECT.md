@@ -12,7 +12,8 @@ When a user drops trash into the sorter, the dashboard updates within 2 seconds 
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] Left sidebar SaaS navigation (Dashboard, Analytics, Impact, Model, Settings) — Validated in Phase 1: Frontend Shell and Navigation
+- [x] shadcn/ui components with consistent styling — Validated in Phase 1: Frontend Shell and Navigation
 
 ### Active
 
@@ -21,7 +22,7 @@ When a user drops trash into the sorter, the dashboard updates within 2 seconds 
 - [ ] Real-time dashboard updates via polling (1-2 second refresh)
 - [ ] Waste composition breakdown visualization (pie/bar chart)
 - [ ] Model performance summary (avg confidence, uncertain rate, fallback rate)
-- [ ] Left sidebar SaaS navigation (Dashboard, Analytics, Impact, Model, Settings)
+- [x] Left sidebar SaaS navigation (Dashboard, Analytics, Impact, Model, Settings) — see Validated
 - [ ] Recent sorting history list
 - [ ] FastAPI backend with event ingestion, metrics, and breakdown endpoints
 - [ ] Supabase Postgres schema (sort_events, devices tables)
@@ -91,4 +92,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-21 after initialization*
+*Last updated: 2026-03-21 after Phase 1 completion*
