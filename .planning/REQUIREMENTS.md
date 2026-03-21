@@ -94,9 +94,9 @@
 
 ### Seed Data
 
-- [ ] **SEED-01**: Realistic seed data generator produces mock sort events with varied labels, confidence scores, and timestamps
-- [ ] **SEED-02**: Seed data includes representative item images in Supabase Storage
-- [ ] **SEED-03**: Seed script can populate database for demo without Pi hardware
+- [x] **SEED-01**: Realistic seed data generator produces mock sort events with varied labels, confidence scores, and timestamps
+- [x] **SEED-02**: Seed data includes representative item images in Supabase Storage
+- [x] **SEED-03**: Seed script can populate database for demo without Pi hardware
 
 ### Visual Design
 
@@ -193,9 +193,9 @@
 | INTG-02 | Phase 6 | Pending |
 | INTG-03 | Phase 6 | Pending |
 | INTG-04 | Phase 6 | Pending |
-| SEED-01 | Phase 5 | Pending |
-| SEED-02 | Phase 5 | Pending |
-| SEED-03 | Phase 5 | Pending |
+| SEED-01 | Phase 5 | Complete |
+| SEED-02 | Phase 5 | Complete |
+| SEED-03 | Phase 5 | Complete |
 | VISL-01 | Phase 2 | Complete |
 | VISL-02 | Phase 1 | Complete |
 | VISL-03 | Phase 2 | Complete |

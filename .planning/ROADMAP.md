@@ -101,7 +101,7 @@ Plans:
 Plans:
 - [x] 05-01-PLAN.md — FastAPI project skeleton with config, DB client, constants, schemas, health endpoint, SQL migration, and test infrastructure
 - [x] 05-02-PLAN.md — All API endpoints (POST/GET events, metrics, breakdown, devices) with service layer and tests
-- [ ] 05-03-PLAN.md — Idempotent seed script for demo data with Supabase verification checkpoint
+- [x] 05-03-PLAN.md — Idempotent seed script for demo data with Supabase verification checkpoint
 
 ### Phase 6: Data Integration and Polling
 **Goal**: The dashboard is fully wired to the live backend -- all sections update automatically every 1-2 seconds
@@ -181,11 +181,11 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Frontend Shell and Navigation | 0/2 | Not started | - |
-| 2. Hero Impact Section | 0/1 | Not started | - |
+| 1. Frontend Shell and Navigation | 2/2 | Complete | 2026-03-21 |
+| 2. Hero Impact Section | 1/1 | Complete | 2026-03-21 |
 | 3. Live Feed Components | 0/1 | Not started | - |
 | 4. Dashboard Supporting Sections | 0/2 | Not started | - |
-| 5. Backend API and Database | 0/3 | Not started | - |
+| 5. Backend API and Database | 3/3 | Complete | 2026-03-21 |
 | 6. Data Integration and Polling | 0/2 | Not started | - |
 | 7. Analytics Page | 0/1 | Not started | - |
 | 8. Impact Page | 0/1 | Not started | - |
