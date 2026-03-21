@@ -1,9 +1,13 @@
 # Dataset — too large for git
-data/
 realwaste-main/
+data/*
+!data/realwaste/
+data/realwaste/*
+!data/realwaste/.gitkeep
 
 # Trained model weights
-models/
+models/*
+!models/.gitkeep
 
 # Python
 __pycache__/
