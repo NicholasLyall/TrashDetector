@@ -72,7 +72,7 @@
 
 ### Backend API
 
-- [ ] **API-01**: GET /health returns service health status
+- [x] **API-01**: GET /health returns service health status
 - [ ] **API-02**: POST /events accepts sort event with image upload and metadata
 - [ ] **API-03**: GET /events returns recent events sorted by newest first with limit parameter
 - [ ] **API-04**: GET /metrics returns aggregate metrics (total items, recycling rate, CO2 saved, waste diverted, avg confidence, uncertain rate, fallback rate)
@@ -81,9 +81,9 @@
 
 ### Database
 
-- [ ] **DB-01**: sort_events table stores id, timestamp, label, routed_bin, confidence, image_url, waste_diverted_kg, co2_saved_kg, fallback_used, source_device_id
-- [ ] **DB-02**: devices table stores id, name, location_name, status, created_at
-- [ ] **DB-03**: Supabase Storage bucket configured for item snapshot images
+- [x] **DB-01**: sort_events table stores id, timestamp, label, routed_bin, confidence, image_url, waste_diverted_kg, co2_saved_kg, fallback_used, source_device_id
+- [x] **DB-02**: devices table stores id, name, location_name, status, created_at
+- [x] **DB-03**: Supabase Storage bucket configured for item snapshot images
 
 ### Data Integration
 
@@ -180,15 +180,15 @@
 | MDTL-03 | Phase 9 | Pending |
 | STNG-01 | Phase 9 | Pending |
 | STNG-02 | Phase 9 | Pending |
-| API-01 | Phase 5 | Pending |
+| API-01 | Phase 5 | Complete |
 | API-02 | Phase 5 | Pending |
 | API-03 | Phase 5 | Pending |
 | API-04 | Phase 5 | Pending |
 | API-05 | Phase 5 | Pending |
 | API-06 | Phase 5 | Pending |
-| DB-01 | Phase 5 | Pending |
-| DB-02 | Phase 5 | Pending |
-| DB-03 | Phase 5 | Pending |
+| DB-01 | Phase 5 | Complete |
+| DB-02 | Phase 5 | Complete |
+| DB-03 | Phase 5 | Complete |
 | INTG-01 | Phase 6 | Pending |
 | INTG-02 | Phase 6 | Pending |
 | INTG-03 | Phase 6 | Pending |
