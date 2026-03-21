@@ -1,9 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
-import { heroMockData, formatNumber } from "@/lib/mock-data";
+import { formatNumber } from "@/lib/mock-data";
 import { HeroIllustration } from "@/components/dashboard/hero-illustration";
+import { useMetrics } from "@/hooks/use-metrics";
+import { HeroSkeleton } from "@/components/dashboard/hero-skeleton";
+import { StaleDataWarning } from "@/components/dashboard/stale-data-warning";
+import { BackendEmptyState } from "@/components/dashboard/backend-empty-state";
 import { Recycle, Leaf, Package } from "lucide-react";
 
 interface StatCardProps {
@@ -33,40 +37,74 @@ function StatCard({ icon: Icon, iconBgColor, iconColor, value, label }: StatCard
   );
 }
 
-const statCards = [
-  {
-    icon: Recycle,
-    iconBgColor: "hsl(142 71% 45% / 0.1)",
-    iconColor: "hsl(142 71% 45%)",
-    value: `${formatNumber(heroMockData.recycledPercent)}%`,
-    label: "Recycled",
-  },
-  {
-    icon: Leaf,
-    iconBgColor: "hsl(174 62% 47% / 0.1)",
-    iconColor: "hsl(174 62% 47%)",
-    value: `${formatNumber(heroMockData.co2SavedKg)} kg`,
-    label: "CO2 Saved",
-  },
-  {
-    icon: Package,
-    iconBgColor: "hsl(199 89% 48% / 0.1)",
-    iconColor: "hsl(199 89% 48%)",
-    value: formatNumber(heroMockData.totalItemsSorted),
-    label: "Total Items Sorted",
-  },
-] as const;
-
 export function HeroImpactSection() {
+  const { metrics, error, isLoading } = useMetrics();
+  const [showEmptyState, setShowEmptyState] = useState(false);
+  const lastSuccessRef = useRef(Date.now());
+
+  useEffect(() => {
+    if (metrics && !error) {
+      lastSuccessRef.current = Date.now();
+    }
+  }, [metrics, error]);
+
+  useEffect(() => {
+    if (error && !metrics) {
+      const timer = setTimeout(() => setShowEmptyState(true), 5000);
+      return () => clearTimeout(timer);
+    }
+    setShowEmptyState(false);
+  }, [error, metrics]);
+
+  if (isLoading) return <HeroSkeleton />;
+
+  if (error && !metrics) {
+    if (!showEmptyState) return <HeroSkeleton />;
+    return (
+      <section>
+        <Card className="relative hero-gradient min-h-[280px] overflow-hidden rounded-xl shadow-sm ring-1 ring-foreground/5">
+          <BackendEmptyState />
+        </Card>
+      </section>
+    );
+  }
+
+  const isStale = !!error && !!metrics;
+
+  const statCards = [
+    {
+      icon: Recycle,
+      iconBgColor: "hsl(142 71% 45% / 0.1)",
+      iconColor: "hsl(142 71% 45%)",
+      value: `${formatNumber(Math.round((metrics?.recycling_rate ?? 0) * 100))}%`,
+      label: "Recycled",
+    },
+    {
+      icon: Leaf,
+      iconBgColor: "hsl(174 62% 47% / 0.1)",
+      iconColor: "hsl(174 62% 47%)",
+      value: `${formatNumber(metrics?.co2_saved_kg ?? 0)} kg`,
+      label: "CO2 Saved",
+    },
+    {
+      icon: Package,
+      iconBgColor: "hsl(199 89% 48% / 0.1)",
+      iconColor: "hsl(199 89% 48%)",
+      value: formatNumber(metrics?.total_items ?? 0),
+      label: "Total Items Sorted",
+    },
+  ];
+
   return (
     <section>
+      {isStale && <StaleDataWarning lastUpdatedMs={lastSuccessRef.current} />}
       <Card className="relative hero-gradient min-h-[280px] overflow-hidden rounded-xl shadow-sm ring-1 ring-foreground/5">
         <HeroIllustration />
         <div className="relative z-10 flex flex-col items-center p-4 pt-8 md:p-6 md:pt-12">
           <h1 className="max-w-lg text-center text-[20px] font-bold leading-[1.2] sm:text-[22px] md:text-[28px]">
             Great job! You&apos;ve diverted{" "}
             <span className="text-[hsl(var(--eco-green))] dark:text-[hsl(142_71%_55%)]">
-              {heroMockData.wasteDivertedKg} kg
+              {metrics?.waste_diverted_kg ?? 0} kg
             </span>{" "}
             of waste today.
           </h1>
