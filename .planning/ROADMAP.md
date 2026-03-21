@@ -42,12 +42,13 @@ Plans:
 ### Phase 2: Hero Impact Section
 **Goal**: Users immediately see inspiring environmental impact metrics as the first element on the dashboard
 **Depends on**: Phase 1
-**Requirements**: DASH-02, HERO-01, HERO-02, HERO-03, HERO-04, VISL-01, VISL-03, VISL-04
+**Requirements**: DASH-02, HERO-01, HERO-02, HERO-03, HERO-04, HERO-06, HERO-07, VISL-01, VISL-03, VISL-04
 **Success Criteria** (what must be TRUE):
   1. Dashboard homepage displays hero impact section as the first visible element above the fold
   2. Hero shows total waste diverted (kg), CO2 saved (kg), recycling rate (%), and total items sorted -- using mock data
-  3. Dashboard uses the eco-tech color palette (green primary, teal/blue accents, white cards)
-  4. Typography is clean with strong visual hierarchy, cards have rounded corners and adequate whitespace
+  3. Hero displays motivational message ("Great job! You've diverted X kg of waste today.") with illustrated eco background (sky, clouds, globe, leaves)
+  4. Dashboard uses the eco-tech color palette (green primary, teal/blue accents, white cards)
+  5. Typography is clean with strong visual hierarchy, cards have rounded corners and adequate whitespace
 **Plans**: TBD
 
 Plans:
@@ -56,12 +57,13 @@ Plans:
 ### Phase 3: Live Feed Components
 **Goal**: Users can see the most recently sorted item with its image, classification details, and a scrollable activity log
 **Depends on**: Phase 2
-**Requirements**: DASH-03, FEED-01, FEED-02, FEED-03, FEED-04, FEED-05
+**Requirements**: DASH-03, FEED-01, FEED-02, FEED-03, FEED-04, FEED-05, FEED-07
 **Success Criteria** (what must be TRUE):
   1. Dashboard homepage displays a prominent live feed section with a large image preview of the latest sorted item
-  2. Each feed item shows label, routed bin badge, confidence score, and timestamp
-  3. Recent activity list shows the last 10+ items below or beside the latest item
-  4. The newest event is visually highlighted to distinguish it from older items
+  2. Each feed item shows label, color-coded bin badge (green=Recycled, brown=Composted, red=Trash), confidence score, and relative timestamp
+  3. Recent activity list shows the last 10+ items with thumbnails below or beside the latest item
+  4. The newest event is visually highlighted with a green status dot indicator
+  5. Live feed displays "Equivalent to planting X trees" environmental translation badge
 **Plans**: TBD
 
 Plans:

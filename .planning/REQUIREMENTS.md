@@ -7,13 +7,13 @@
 
 ### Dashboard Layout
 
-- [ ] **DASH-01**: App has a left sidebar with navigation to Dashboard, Analytics, Impact, Model, Settings pages
+- [ ] **DASH-01**: App has a left sidebar with "ECO DASHBOARD" branding, nav icons for Dashboard, Analytics, Impact, Model, Settings, and Admin user at bottom
 - [ ] **DASH-02**: Dashboard homepage displays hero impact section as first visible element above the fold
 - [ ] **DASH-03**: Dashboard homepage displays prominent live feed section with latest sorted item
-- [ ] **DASH-04**: Dashboard homepage displays KPI summary strip
-- [ ] **DASH-05**: Dashboard homepage displays waste composition chart
-- [ ] **DASH-06**: Dashboard homepage displays model performance summary card
-- [ ] **DASH-07**: Dashboard homepage displays recent sorting history list
+- [ ] **DASH-04**: Top bar displays KPI chip strip (Total Items, Recycling Rate, Avg Confidence, Fallback Rate) always visible
+- [ ] **DASH-05**: Dashboard homepage displays waste composition chart with "View Full Analytics →" link
+- [ ] **DASH-06**: Dashboard homepage displays model performance card with confidence distribution bar
+- [ ] **DASH-07**: Dashboard homepage displays recent sorting history list with thumbnails
 
 ### Hero Impact
 
@@ -22,15 +22,18 @@
 - [ ] **HERO-03**: Hero section shows recycling rate as percentage
 - [ ] **HERO-04**: Hero section shows total items sorted count
 - [ ] **HERO-05**: Hero metrics update automatically when new events arrive (1-2s polling)
+- [ ] **HERO-06**: Hero section displays motivational message ("Great job! You've diverted X kg of waste today.")
+- [ ] **HERO-07**: Hero section has illustrated eco background (sky, clouds, globe, floating leaves)
 
 ### Live Feed
 
 - [ ] **FEED-01**: Live feed shows the latest sorted item with large image preview
-- [ ] **FEED-02**: Live feed shows item label, routed bin badge, and confidence score
-- [ ] **FEED-03**: Live feed shows timestamp for each item
-- [ ] **FEED-04**: Live feed shows a recent activity list of last 10+ items
-- [ ] **FEED-05**: Live feed highlights newest event visually
+- [ ] **FEED-02**: Live feed shows item label, color-coded bin badge (green=Recycled, brown=Composted, red=Trash), and confidence score
+- [ ] **FEED-03**: Live feed shows relative timestamp for each item (e.g., "2s", "14s ago")
+- [ ] **FEED-04**: Live feed shows a recent activity list with thumbnails, name, confidence, badge, and timestamp
+- [ ] **FEED-05**: Live feed highlights newest event with green status dot indicator
 - [ ] **FEED-06**: Live feed refreshes automatically every 1-2 seconds
+- [ ] **FEED-07**: Live feed displays "Equivalent to planting X trees" environmental translation badge
 
 ### Waste Breakdown
 
@@ -151,12 +154,15 @@
 | HERO-03 | Phase 2 | Pending |
 | HERO-04 | Phase 2 | Pending |
 | HERO-05 | Phase 6 | Pending |
+| HERO-06 | Phase 2 | Pending |
+| HERO-07 | Phase 2 | Pending |
 | FEED-01 | Phase 3 | Pending |
 | FEED-02 | Phase 3 | Pending |
 | FEED-03 | Phase 3 | Pending |
 | FEED-04 | Phase 3 | Pending |
 | FEED-05 | Phase 3 | Pending |
 | FEED-06 | Phase 6 | Pending |
+| FEED-07 | Phase 3 | Pending |
 | WSTE-01 | Phase 4 | Pending |
 | WSTE-02 | Phase 4 | Pending |
 | WSTE-03 | Phase 6 | Pending |
@@ -197,10 +203,10 @@
 | VISL-05 | Phase 10 | Pending |
 
 **Coverage:**
-- v1 requirements: 56 total
-- Mapped to phases: 56
+- v1 requirements: 59 total
+- Mapped to phases: 59
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-21*
-*Last updated: 2026-03-21 after roadmap creation (phase assignments refined)*
+*Last updated: 2026-03-21 after mockup analysis (added HERO-06, HERO-07, FEED-07 from dashboard reference)*
