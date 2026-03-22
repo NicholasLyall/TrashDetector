@@ -67,8 +67,8 @@
 
 ### Settings Page
 
-- [ ] **STNG-01**: Settings page shows registered device metadata (name, location, status)
-- [ ] **STNG-02**: Settings page allows viewing device configuration
+- [x] **STNG-01**: Settings page shows registered device metadata (name, location, status)
+- [x] **STNG-02**: Settings page allows viewing device configuration
 
 ### Backend API
 
@@ -178,8 +178,8 @@
 | MDTL-01 | Phase 9 | Pending |
 | MDTL-02 | Phase 9 | Pending |
 | MDTL-03 | Phase 9 | Pending |
-| STNG-01 | Phase 9 | Pending |
-| STNG-02 | Phase 9 | Pending |
+| STNG-01 | Phase 9 | Complete |
+| STNG-02 | Phase 9 | Complete |
 | API-01 | Phase 5 | Complete |
 | API-02 | Phase 5 | Complete |
 | API-03 | Phase 5 | Complete |

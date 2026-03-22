@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 06-02-PLAN.md
-last_updated: "2026-03-21T23:48:45.536Z"
+stopped_at: Completed 09-02-PLAN.md
+last_updated: "2026-03-22T00:04:41.045Z"
 progress:
   total_phases: 10
   completed_phases: 6
-  total_plans: 12
-  completed_plans: 12
+  total_plans: 15
+  completed_plans: 13
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** When a user drops trash into the sorter, the dashboard updates within 2 seconds showing the sorted item, environmental impact, and live feed.
-**Current focus:** Phase 06 — data-integration-and-polling
+**Current focus:** Phase 09 — model-detail-and-settings-pages
 
 ## Current Position
 
-Phase: 7
-Plan: Not started
+Phase: 09 (model-detail-and-settings-pages) — EXECUTING
+Plan: 2 of 2
 
 ## Performance Metrics
 
@@ -58,6 +58,7 @@ Plan: Not started
 | Phase 04 P02 | 2min | 2 tasks | 2 files |
 | Phase 06 P01 | 2min | 2 tasks | 7 files |
 | Phase 06 P02 | 3min | 4 tasks | 12 files |
+| Phase 09 P02 | 2min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -97,6 +98,8 @@ Recent decisions affecting current work:
 - [Phase 06]: One SWR hook per endpoint: useMetrics, useEvents, useBreakdown each wrap a single SWR call
 - [Phase 06]: D-04 skeleton-to-empty-state delay: 5s setTimeout before BackendEmptyState prevents flash on slow connections
 - [Phase 06]: Conditional image rendering: event.image_url renders img tag, null falls back to CategoryIllustration
+- [Phase 09]: Master-detail layout with 1:2 column ratio for device list and config panel
+- [Phase 09]: Static model config values (YOLOv8n, 0.70 confidence) in DeviceConfigPanel until Pi hardware is connected
 
 ### Pending Todos
 
@@ -109,6 +112,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T23:45:43.597Z
-Stopped at: Completed 06-02-PLAN.md
+Last session: 2026-03-22T00:04:41.043Z
+Stopped at: Completed 09-02-PLAN.md
 Resume file: None
