@@ -1,5 +1,6 @@
 "use client";
 
+import { BarChart3 } from "lucide-react";
 import { CategoryBreakdownCard } from "@/components/analytics/category-breakdown-card";
 import { SortingTrendCard } from "@/components/analytics/sorting-trend-card";
 import { EventHistoryCard } from "@/components/analytics/event-history-card";
@@ -9,8 +10,11 @@ export default function AnalyticsPage() {
     <div className="space-y-6">
       {/* Page header */}
       <div>
-        <h1 className="text-xl font-bold">Analytics</h1>
-        <p className="text-sm text-muted-foreground">
+        <div className="flex items-center gap-2">
+          <BarChart3 className="h-6 w-6 text-emerald-600" />
+          <h1 className="text-2xl font-bold text-gray-900">Analytics</h1>
+        </div>
+        <p className="mt-1 text-sm text-muted-foreground">
           Detailed sorting trends and category breakdowns
         </p>
       </div>

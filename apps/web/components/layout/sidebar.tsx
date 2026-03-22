@@ -49,10 +49,10 @@ export function Sidebar() {
                   <Link
                     href={item.href}
                     className={cn(
-                      "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                      "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors duration-150 border-l-2",
                       isActive
-                        ? "bg-emerald-50 text-emerald-700"
-                        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                        ? "bg-emerald-50 text-emerald-700 border-emerald-600"
+                        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900 border-transparent"
                     )}
                   />
                 }

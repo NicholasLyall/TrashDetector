@@ -164,6 +164,17 @@
   }
 }
 
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes pulse-highlight {
   0% {
     box-shadow: 0 0 0 0 hsl(142 71% 45% / 0.4);
@@ -177,6 +188,9 @@
 }
 
 @layer utilities {
+  .animate-page-fade-in {
+    animation: page-fade-in 150ms ease-out;
+  }
   .animate-pulse-highlight {
     animation: pulse-highlight 1s ease-out;
   }
@@ -186,6 +200,7 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-float,
   .animate-cloud-drift,
+  .animate-page-fade-in,
   .animate-pulse-highlight {
     animation: none;
   }

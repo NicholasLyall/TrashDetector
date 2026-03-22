@@ -35,7 +35,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div className="flex min-h-screen flex-1 flex-col overflow-hidden">
         <TopBar onMobileMenuOpen={() => setSidebarOpen(true)} />
         <main
-          className="flex-1 overflow-y-auto p-6"
+          className="flex-1 overflow-y-auto p-6 animate-page-fade-in"
           style={{ backgroundColor: "hsl(var(--eco-bg))" }}
         >
           {children}
