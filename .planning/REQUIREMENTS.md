@@ -51,7 +51,7 @@
 
 - [x] **ANLY-01**: Analytics page shows deeper category breakdown charts
 - [x] **ANLY-02**: Analytics page shows time-based sorting trend charts
-- [ ] **ANLY-03**: Analytics page shows recent event list with filtering
+- [x] **ANLY-03**: Analytics page shows recent event list with filtering
 
 ### Impact Page
 
@@ -171,7 +171,7 @@
 | MODL-03 | Phase 4 | Complete |
 | ANLY-01 | Phase 7 | Complete |
 | ANLY-02 | Phase 7 | Complete |
-| ANLY-03 | Phase 7 | Pending |
+| ANLY-03 | Phase 7 | Complete |
 | IMPT-01 | Phase 8 | Complete |
 | IMPT-02 | Phase 8 | Complete |
 | IMPT-03 | Phase 8 | Complete |

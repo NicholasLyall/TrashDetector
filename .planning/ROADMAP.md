@@ -132,7 +132,7 @@ Plans:
 
 Plans:
 - [x] 07-01-PLAN.md — Install shadcn Table/Select, create compute-analytics utility, build CategoryBreakdownCard and SortingTrendCard
-- [ ] 07-02-PLAN.md — Create CategoryFilter and EventHistoryCard components, wire complete Analytics page
+- [x] 07-02-PLAN.md — Create CategoryFilter and EventHistoryCard components, wire complete Analytics page
 
 ### Phase 8: Impact Page
 **Goal**: Users feel emotionally compelled by tangible environmental equivalents of the system's impact
