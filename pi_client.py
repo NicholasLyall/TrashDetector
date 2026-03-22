@@ -68,7 +68,6 @@ print("Connected. Streaming...")
 cap = cv2.VideoCapture(0)
 
 done = False
-trigger_time = None
 move_servos(110, 70)
 print("Servos initialised — servo1=110° servo2=90°")
 
@@ -87,18 +86,16 @@ try:
         response = recv_all(sock, 32).decode().strip()
 
         if done:
-            if time.time() - trigger_time >= 3.0:
-                move_servos(110, 70)
-                print("Returning to centre — ready for next item")
-                done = False
-                trigger_time = None
+            time.sleep(3.0)
+            move_servos(110, 70)
+            print("Returning to centre — ready for next item")
+            done = False
         elif response != "WAIT":
             angle1 = 150 if response in ("paper_cardboard", "plastic") else 70
             angle2 = 140 if response in ("metal_glass", "plastic") else 0
             print(f"Object detected ({response}) — servo1={angle1}° servo2={angle2}°")
             move_servos(angle1, angle2)
             done = True
-            trigger_time = time.time()
 
 except KeyboardInterrupt:
     print("Shutting down")

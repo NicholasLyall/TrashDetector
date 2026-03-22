@@ -5,6 +5,7 @@ Run this on your PC before starting pi_client.py on the Pi.
 import socket
 import struct
 import time
+import threading
 import numpy as np
 import cv2
 import torch
@@ -18,10 +19,10 @@ PORT = 5050
 
 # --- Dashboard API ---
 DASHBOARD_API_URL = "http://192.168.4.33:8000"   # swap to hosted URL when deployed
-DEVICE_ID = "d0000000-0000-0000-0000-000000000001"  # swap to your registered device UUID
-DASHBOARD_ENABLED = False
+DEVICE_ID = "0822e8f3-6c03-4199-972a-846916419f82"
+DASHBOARD_ENABLED = True
 
-CHANGE_THRESHOLD = 0.08
+CHANGE_THRESHOLD = 0.096
 
 BINS = ["paper_cardboard", "metal_glass", "plastic", "trash"]
 
@@ -55,7 +56,7 @@ def post_event(jpg_bytes, label, confidence):
         return
     try:
         with httpx.Client(timeout=5) as client:
-            client.post(
+            r = client.post(
                 f"{DASHBOARD_API_URL}/events",
                 data={
                     "label": label,
@@ -64,6 +65,7 @@ def post_event(jpg_bytes, label, confidence):
                 },
                 files={"image": ("frame.jpg", jpg_bytes, "image/jpeg")},
             )
+        print(f"  Dashboard post: {r.status_code}")
     except Exception as e:
         print(f"  Dashboard post failed: {e}")
 
@@ -164,6 +166,8 @@ while True:
     trigger_time = None
     consecutive_bin = None
     consecutive_count = 0
+    recalibrating = False
+    recal_frames = []
 
     try:
         while True:
@@ -192,14 +196,24 @@ while True:
                 object_detected = changed_ratio > CHANGE_THRESHOLD
 
                 if done:
-                    if time.time() - trigger_time >= 4.0:
+                    if time.time() - trigger_time >= 10.0:
                         done = False
                         trigger_time = None
                         locked_result = None
                         consecutive_bin = None
                         consecutive_count = 0
-                        print("  Ready for next item")
-                    servo_cmd = locked_result[0].encode().ljust(32) if locked_result else b"WAIT".ljust(32)
+                        recalibrating = True
+                        recal_frames = []
+                        print("  Recalibrating background...")
+                    servo_cmd = b"WAIT".ljust(32)
+                elif recalibrating:
+                    recal_frames.append(gray.astype(np.float32))
+                    if len(recal_frames) >= 10:
+                        background = np.mean(recal_frames, axis=0).astype(np.uint8)
+                        recalibrating = False
+                        recal_frames = []
+                        print("  Background updated — ready for next item")
+                    servo_cmd = b"WAIT".ljust(32)
                 elif object_detected:
                     pred_bin, probs = classify_frame(frame)
                     confidence = probs.max().item()
@@ -218,6 +232,11 @@ while True:
                         trigger_time = time.time()
                         servo_cmd = pred_bin.encode().ljust(32)
                         print(f"  ✓ locked: {pred_bin}")
+                        threading.Thread(
+                            target=post_event,
+                            args=(jpg_bytes, pred_bin, confidence),
+                            daemon=True
+                        ).start()
                     else:
                         servo_cmd = b"WAIT".ljust(32)
                 else:
