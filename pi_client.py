@@ -64,6 +64,8 @@ print("Connected. Streaming...")
 
 cap = cv2.VideoCapture(0)
 
+current_bin = None
+
 try:
     while True:
         ret, frame = cap.read()
@@ -78,8 +80,9 @@ try:
         # Receive command from PC
         response = recv_all(sock, 32).decode().strip()
 
-        if response != "WAIT" and response in BIN_POSITIONS:
+        if response != "WAIT" and response in BIN_POSITIONS and response != current_bin:
             print(f"Moving to: {response}")
+            current_bin = response
             angle1, angle2 = BIN_POSITIONS[response]
             move_servos(angle1, angle2)
 
