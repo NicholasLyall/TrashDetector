@@ -173,7 +173,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 10-01-PLAN.md — Demo button, animated number counters, and new-event pulse highlight
+- [x] 10-01-PLAN.md — Demo button, animated number counters, and new-event pulse highlight
 - [ ] 10-02-PLAN.md — Sidebar polish, page transitions, cross-page consistency pass, and visual verification
 
 ## Progress
@@ -193,4 +193,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 7. Analytics Page | 0/2 | Not started | - |
 | 8. Impact Page | 0/1 | Not started | - |
 | 9. Model Detail and Settings Pages | 0/2 | Not started | - |
-| 10. Visual Polish and Demo Readiness | 0/2 | Not started | - |
+| 10. Visual Polish and Demo Readiness | 1/2 | In Progress|  |
