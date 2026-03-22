@@ -9,8 +9,8 @@ import type { SortEvent } from "@/lib/types";
  * (INTG-03, FEED-06)
  */
 export function useEvents(limit: number = 20) {
-  const { data, error, isLoading } = useSWR<readonly SortEvent[]>(
+  const { data, error, isLoading, mutate } = useSWR<readonly SortEvent[]>(
     `/events?limit=${limit}`
   );
-  return { events: data, error, isLoading } as const;
+  return { events: data, error, isLoading, mutate } as const;
 }
