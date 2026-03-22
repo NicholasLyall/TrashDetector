@@ -35,7 +35,7 @@ Declared values (multiples of 4):
 |-------|-------|---------------------|
 | xs | 4px | Icon-to-text gaps in filter badges, chart legend dot spacing |
 | sm | 8px | Filter button internal padding, chart legend item gaps |
-| md | 16px | Card internal padding, grid gap between chart cards, table cell padding |
+| md | 16px | Card internal padding, grid gap between chart cards, table cell padding, filter pill horizontal padding |
 | lg | 24px | Section vertical spacing (gap between page header and content cards) |
 | xl | 32px | Gap between major page sections (charts row, event list) |
 | 2xl | 48px | Not used this phase |
@@ -57,7 +57,7 @@ Source: Phase 2/3 spacing scale, confirmed consistent with existing `gap-4` (16p
 
 3 sizes declared. Page title and card titles share the Heading slot at 20px (`text-xl font-bold`). Page subtitle uses Body size (14px) in muted-foreground.
 
-2 weights only: 400 (regular) for body and label text, 700 (bold) for headings and page title.
+2 weights only: 400 (regular) for body and label text, 700 (bold) for headings, page title, and bar chart count labels.
 
 Source: Phase 2/3 typography scale, consolidated from 5 sizes to 3 to meet 4-max constraint.
 
@@ -156,6 +156,8 @@ Source: Existing component inventory from glob, `lib/categories.tsx`, hooks dire
 
 ## Layout Contract
 
+**Primary focal point:** CategoryBreakdownCard is the primary visual anchor on page load. It occupies the first grid cell in the 2-column chart row and draws the eye with its colored horizontal bars, making category distribution the first insight users absorb.
+
 ### Page Structure
 
 ```
@@ -188,7 +190,7 @@ Card
 - Bar radius: 4px rounded ends
 - Bar height: 24px per bar
 - Category labels: 14px regular, left-aligned on Y axis
-- Count labels: 14px semibold, right of each bar
+- Count labels: 14px bold (`text-sm font-bold`), right of each bar
 
 ### SortingTrendCard Internal Layout
 
@@ -251,7 +253,7 @@ flex flex-wrap gap-2
   [Trash pill]                           -- uses CATEGORY_CONFIG color
 ```
 
-- Pill styling: `rounded-full px-3 py-2 text-sm font-medium cursor-pointer transition-colors`
+- Pill styling: `rounded-full px-4 py-2 text-sm font-medium cursor-pointer transition-colors`
 - Inactive: `bg-muted text-muted-foreground border border-transparent`
 - Active: `bg-{category-bg} text-{category-color} border border-{category-color}`
 - "All" active state: `bg-emerald-50 text-emerald-700 border border-emerald-600`
