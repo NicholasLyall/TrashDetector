@@ -30,7 +30,7 @@ When a user drops trash into the sorter, the dashboard updates within 2 seconds 
 - [ ] Supabase Storage for captured item images
 - [ ] Event ingestion API accepting image + metadata from Pi
 - [ ] Analytics page with deeper category charts and time-based trends
-- [ ] Impact page with environmental equivalents (trees saved, etc.)
+- [x] Impact page with environmental equivalents (trees saved, etc.) — Validated in Phase 8: Impact Page
 - [ ] Model performance page with confidence banding
 - [ ] Settings page with device metadata
 - [ ] Seed/mock data for development before Pi is ready
@@ -93,4 +93,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-21 after Phase 2 completion*
+*Last updated: 2026-03-22 after Phase 8 completion*
