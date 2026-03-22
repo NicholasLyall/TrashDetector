@@ -4,9 +4,11 @@ Run this on your PC before starting pi_client.py on the Pi.
 """
 import socket
 import struct
+import time
 import numpy as np
 import cv2
 import torch
+import httpx
 from PIL import Image
 from transformers import CLIPProcessor, CLIPModel
 from config import DEVICE
@@ -14,8 +16,12 @@ from config import DEVICE
 HOST = "0.0.0.0"
 PORT = 5050
 
-MOTION_THRESHOLD = 0.025
-PIXEL_DIFF_THRESHOLD = 8
+# --- Dashboard API ---
+DASHBOARD_API_URL = "http://192.168.4.33:8000"   # swap to hosted URL when deployed
+DEVICE_ID = "d0000000-0000-0000-0000-000000000001"  # swap to your registered device UUID
+DASHBOARD_ENABLED = False
+
+CHANGE_THRESHOLD = 0.08
 
 BINS = ["paper_cardboard", "metal_glass", "plastic", "trash"]
 
@@ -29,7 +35,7 @@ BIN_COLORS = {
 # Text prompts — tweak these to improve accuracy
 BIN_PROMPTS = {
     "paper_cardboard": "flat brown corrugated cardboard box or clean flat sheet of paper or notebook paper or cardboard sheet for recycling",
-    "metal_glass":     "glass bottle or transparent glass jar or shiny metal can or aluminium can or tin can or steel can",
+    "metal_glass":     "glass bottle or transparent glass jar or shiny metal can or aluminium can or tin can or steel can, typically round or cylindrical in shape",
     "plastic":         "plastic bottle or clear plastic cup or solo cup or plastic container or plastic bag or polythene",
     "trash":           "crumpled dirty paper or greasy food wrapper or chip paper or greaseproof paper or soiled paper or food waste or general rubbish",
 }
@@ -42,6 +48,24 @@ clip_model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32").to(device
 clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
 clip_model.eval()
 print(f"CLIP loaded on {device}")
+
+
+def post_event(jpg_bytes, label, confidence):
+    if not DASHBOARD_ENABLED:
+        return
+    try:
+        with httpx.Client(timeout=5) as client:
+            client.post(
+                f"{DASHBOARD_API_URL}/events",
+                data={
+                    "label": label,
+                    "confidence": str(round(confidence, 4)),
+                    "source_device_id": DEVICE_ID,
+                },
+                files={"image": ("frame.jpg", jpg_bytes, "image/jpeg")},
+            )
+    except Exception as e:
+        print(f"  Dashboard post failed: {e}")
 
 
 def classify_frame(frame):
@@ -65,7 +89,7 @@ def recv_all(conn, size):
     return data
 
 
-def draw_ui(frame, changed_ratio, object_present, locked_result, background_ready):
+def draw_ui(frame, changed_ratio, object_detected, locked_result, background_ready):
     h, w = frame.shape[:2]
 
     if not background_ready:
@@ -74,7 +98,7 @@ def draw_ui(frame, changed_ratio, object_present, locked_result, background_read
         return frame
 
     # Status
-    if object_present and locked_result:
+    if object_detected and locked_result:
         pred_bin, probs = locked_result
         status, status_color = "OBJECT DETECTED", (0, 255, 0)
         box_color = BIN_COLORS[pred_bin]
@@ -106,14 +130,14 @@ def draw_ui(frame, changed_ratio, object_present, locked_result, background_read
     # Motion meter
     meter_x1, meter_y1 = 10, h - 40
     meter_w = w - 20
-    fill = int(meter_w * min(changed_ratio / (MOTION_THRESHOLD * 2), 1.0))
+    fill = int(meter_w * min(changed_ratio / (CHANGE_THRESHOLD * 2), 1.0))
     threshold_x = int(meter_w * 0.5)
     cv2.rectangle(frame, (meter_x1, meter_y1), (meter_x1+meter_w, meter_y1+20), (50, 50, 50), -1)
-    fill_color = (0, 220, 0) if object_present else (160, 160, 160)
+    fill_color = (0, 220, 0) if object_detected else (160, 160, 160)
     cv2.rectangle(frame, (meter_x1, meter_y1), (meter_x1+fill, meter_y1+20), fill_color, -1)
     cv2.line(frame, (meter_x1+threshold_x, meter_y1-4),
              (meter_x1+threshold_x, meter_y1+24), (0, 100, 255), 2)
-    cv2.putText(frame, f"motion {changed_ratio*100:.1f}%  |  threshold {MOTION_THRESHOLD*100:.0f}%",
+    cv2.putText(frame, f"change {changed_ratio*100:.1f}%  |  threshold {CHANGE_THRESHOLD*100:.0f}%",
                 (meter_x1, meter_y1-6), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (200, 200, 200), 1)
 
     # Status top right
@@ -136,6 +160,10 @@ while True:
     background = None
     bg_frames = []
     locked_result = None
+    done = False
+    trigger_time = None
+    consecutive_bin = None
+    consecutive_count = 0
 
     try:
         while True:
@@ -156,29 +184,52 @@ while True:
                     background = np.mean(bg_frames, axis=0).astype(np.uint8)
                     print("Background captured.")
                 changed_ratio = 0
-                object_present = False
+                object_detected = False
                 servo_cmd = b"WAIT".ljust(32)
             else:
-                # Motion detection
                 diff = cv2.absdiff(gray, background)
-                _, fg_mask = cv2.threshold(diff, PIXEL_DIFF_THRESHOLD, 255, cv2.THRESH_BINARY)
-                changed_ratio = np.count_nonzero(fg_mask) / fg_mask.size
-                object_present = changed_ratio > MOTION_THRESHOLD
+                changed_ratio = diff.mean() / 255.0
+                object_detected = changed_ratio > CHANGE_THRESHOLD
 
-                if object_present:
+                if done:
+                    if time.time() - trigger_time >= 4.0:
+                        done = False
+                        trigger_time = None
+                        locked_result = None
+                        consecutive_bin = None
+                        consecutive_count = 0
+                        print("  Ready for next item")
+                    servo_cmd = locked_result[0].encode().ljust(32) if locked_result else b"WAIT".ljust(32)
+                elif object_detected:
                     pred_bin, probs = classify_frame(frame)
-                    locked_result = (pred_bin, probs)
-                    servo_cmd = pred_bin.encode().ljust(32)
-                    print(f"  → {pred_bin} ({probs.max().item()*100:.1f}%)")
+                    confidence = probs.max().item()
+
+                    if pred_bin == consecutive_bin:
+                        consecutive_count += 1
+                    else:
+                        consecutive_bin = pred_bin
+                        consecutive_count = 1
+
+                    print(f"  {pred_bin} ({confidence*100:.1f}%) [{consecutive_count}/10]")
+
+                    if consecutive_count >= 10:
+                        locked_result = (pred_bin, probs)
+                        done = True
+                        trigger_time = time.time()
+                        servo_cmd = pred_bin.encode().ljust(32)
+                        print(f"  ✓ locked: {pred_bin}")
+                    else:
+                        servo_cmd = b"WAIT".ljust(32)
                 else:
-                    locked_result = None
+                    consecutive_bin = None
+                    consecutive_count = 0
                     servo_cmd = b"WAIT".ljust(32)
 
             # Send command back to Pi
             conn.sendall(servo_cmd)
 
             # Draw UI and display
-            frame = draw_ui(frame, changed_ratio, object_present,
+            frame = draw_ui(frame, changed_ratio, object_detected,
                            locked_result, background is not None)
             cv2.imshow("Pi Camera — Trash Detector", frame)
             if cv2.waitKey(1) & 0xFF == ord("q"):

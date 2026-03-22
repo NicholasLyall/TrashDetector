@@ -18,10 +18,10 @@ SERVO_2_PIN = 18
 
 # Bin → servo positions (Servo1°, Servo2°)
 BIN_POSITIONS = {
-    "paper_cardboard": (0,  0),
-    "metal_glass":     (90, 0),
-    "plastic":         (0,  90),
-    "trash":           (90, 90),
+    "paper_cardboard": (70,  70),
+    "metal_glass":     (110, 70),
+    "plastic":         (70,  110),
+    "trash":           (110, 110),
 }
 
 
@@ -48,6 +48,7 @@ def recv_all(sock, size):
 
 
 # GPIO setup
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(SERVO_1_PIN, GPIO.OUT)
 GPIO.setup(SERVO_2_PIN, GPIO.OUT)
@@ -64,7 +65,10 @@ print("Connected. Streaming...")
 
 cap = cv2.VideoCapture(0)
 
-current_bin = None
+done = False
+trigger_time = None
+move_servos(110, 70)
+print("Servos initialised — servo1=110°")
 
 try:
     while True:
@@ -80,11 +84,18 @@ try:
         # Receive command from PC
         response = recv_all(sock, 32).decode().strip()
 
-        if response != "WAIT" and response in BIN_POSITIONS and response != current_bin:
-            print(f"Moving to: {response}")
-            current_bin = response
-            angle1, angle2 = BIN_POSITIONS[response]
-            move_servos(angle1, angle2)
+        if done:
+            if time.time() - trigger_time >= 3.0:
+                move_servos(110, 70)
+                print("Returning to centre — ready for next item")
+                done = False
+                trigger_time = None
+        elif response != "WAIT":
+            angle = 70 if response == "metal_glass" else 150
+            print(f"Object detected ({response}) — moving to {angle}°")
+            move_servos(angle, 70)
+            done = True
+            trigger_time = time.time()
 
 except KeyboardInterrupt:
     print("Shutting down")
