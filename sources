@@ -1,0 +1,51 @@
+SOURCES
+
+== AI / Machine Learning ==
+OpenAI CLIP (clip-vit-base-patch32) - Zero-shot image classification model
+  https://huggingface.co/openai/clip-vit-base-patch32
+Hugging Face Transformers - Model loading and inference
+  https://huggingface.co/docs/transformers
+PyTorch - Deep learning framework
+  https://pytorch.org
+OpenCV (cv2) - Image processing and camera capture
+  https://opencv.org
+Pillow (PIL) - Image format conversion
+  https://python-pillow.org
+
+== Frontend ==
+Next.js - React framework
+  https://nextjs.org
+React - UI library
+  https://react.dev
+TypeScript - Type-safe JavaScript
+  https://www.typescriptlang.org
+Tailwind CSS - Utility-first CSS framework
+  https://tailwindcss.com
+shadcn/ui - UI component library
+  https://ui.shadcn.com
+Recharts - Charting library for React
+  https://recharts.org
+SWR - Data fetching and polling
+  https://swr.vercel.app
+Lucide React - Icon library
+  https://lucide.dev
+
+== Backend ==
+FastAPI - Python web framework
+  https://fastapi.tiangolo.com
+Uvicorn - ASGI server
+  https://www.uvicorn.org
+Pydantic - Data validation
+  https://docs.pydantic.dev
+
+== Database / Storage / Hosting ==
+Supabase - Postgres database and image storage
+  https://supabase.com
+
+== Hardware ==
+Raspberry Pi - Edge computing device
+  https://www.raspberrypi.com
+
+== Development Tools ==
+Claude Code (Anthropic) - AI coding assistant
+  https://claude.ai
