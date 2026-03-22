@@ -55,9 +55,9 @@
 
 ### Impact Page
 
-- [ ] **IMPT-01**: Impact page shows total CO2 saved with environmental equivalents (trees, miles driven)
-- [ ] **IMPT-02**: Impact page shows total waste diverted with tangible comparisons
-- [ ] **IMPT-03**: Impact metrics are visually inspiring and prominent
+- [x] **IMPT-01**: Impact page shows total CO2 saved with environmental equivalents (trees, miles driven)
+- [x] **IMPT-02**: Impact page shows total waste diverted with tangible comparisons
+- [x] **IMPT-03**: Impact metrics are visually inspiring and prominent
 
 ### Model Detail Page
 
@@ -172,9 +172,9 @@
 | ANLY-01 | Phase 7 | Pending |
 | ANLY-02 | Phase 7 | Pending |
 | ANLY-03 | Phase 7 | Pending |
-| IMPT-01 | Phase 8 | Pending |
-| IMPT-02 | Phase 8 | Pending |
-| IMPT-03 | Phase 8 | Pending |
+| IMPT-01 | Phase 8 | Complete |
+| IMPT-02 | Phase 8 | Complete |
+| IMPT-03 | Phase 8 | Complete |
 | MDTL-01 | Phase 9 | Complete |
 | MDTL-02 | Phase 9 | Complete |
 | MDTL-03 | Phase 9 | Complete |

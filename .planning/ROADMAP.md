@@ -144,7 +144,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 08-01-PLAN.md — Impact equivalents library, hero banner, CO2 equivalents grid, waste diversion stats, wired to live metrics
+- [x] 08-01-PLAN.md — Impact equivalents library, hero banner, CO2 equivalents grid, waste diversion stats, wired to live metrics
 
 ### Phase 9: Model Detail and Settings Pages
 **Goal**: Users can inspect model performance in depth and view device configuration
