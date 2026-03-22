@@ -51,16 +51,15 @@ Source: Phase 2/3 spacing scale, confirmed consistent with existing `gap-4` (16p
 
 | Role | Size | Weight | Line Height | Usage in This Phase |
 |------|------|--------|-------------|---------------------|
-| Body | 14px | 400 (regular) | 1.5 | Table cell text, filter labels, chart axis labels, event list item text |
 | Label | 12px | 400 (regular) | 1.4 | Chart tick labels, "Showing X of Y" count, filter tag text, table header text |
-| Heading | 20px | 700 (bold) | 1.2 | Card titles ("Category Breakdown", "Sorting Trends", "Event History") |
-| Display | 28px | 700 (bold) | 1.2 | Not used this phase (reserved for hero/page titles) |
+| Body | 14px | 400 (regular) | 1.5 | Table cell text, filter labels, chart axis labels, event list item text |
+| Heading | 20px | 700 (bold) | 1.2 | Page title "Analytics", card titles ("Category Breakdown", "Sorting Trends", "Event History") |
 
-Page title "Analytics" uses `text-2xl font-bold` (24px) matching the existing placeholder page pattern. Subtitle uses Body size (14px) in muted-foreground.
+3 sizes declared. Page title and card titles share the Heading slot at 20px (`text-xl font-bold`). Page subtitle uses Body size (14px) in muted-foreground.
 
 2 weights only: 400 (regular) for body and label text, 700 (bold) for headings and page title.
 
-Source: Phase 2/3 typography scale, existing `analytics/page.tsx` placeholder.
+Source: Phase 2/3 typography scale, consolidated from 5 sizes to 3 to meet 4-max constraint.
 
 ---
 
@@ -77,7 +76,6 @@ Source: Phase 2/3 typography scale, existing `analytics/page.tsx` placeholder.
 
 Accent reserved for:
 - Active filter pill highlight border
-- "View" link text on event rows (hover state)
 - Selected time range indicator
 - Never: chart fill colors (those use category-specific colors), general text, card backgrounds
 
@@ -163,7 +161,7 @@ Source: Existing component inventory from glob, `lib/categories.tsx`, hooks dire
 ```
 AnalyticsPage (app/analytics/page.tsx):
   space-y-6
-    [Page Header]                        -- h1 "Analytics" + subtitle
+    [Page Header]                        -- h1 "Analytics" (text-xl font-bold) + subtitle
     [grid grid-cols-1 lg:grid-cols-2 gap-6]
       [CategoryBreakdownCard]            -- col-span-1, horizontal bar chart
       [SortingTrendCard]                 -- col-span-1, area chart with time selector
@@ -253,7 +251,7 @@ flex flex-wrap gap-2
   [Trash pill]                           -- uses CATEGORY_CONFIG color
 ```
 
-- Pill styling: `rounded-full px-3 py-1.5 text-sm font-medium cursor-pointer transition-colors`
+- Pill styling: `rounded-full px-3 py-2 text-sm font-medium cursor-pointer transition-colors`
 - Inactive: `bg-muted text-muted-foreground border border-transparent`
 - Active: `bg-{category-bg} text-{category-color} border border-{category-color}`
 - "All" active state: `bg-emerald-50 text-emerald-700 border border-emerald-600`
