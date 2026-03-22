@@ -124,8 +124,8 @@ export function ConfidenceDistributionChart({
               allowDecimals={false}
             />
             <Tooltip
-              formatter={(value: number) => [value, "Events"]}
-              labelFormatter={(label: string) => `${label}% confidence`}
+              formatter={(value) => [String(value), "Events"]}
+              labelFormatter={(label) => `${String(label)}% confidence`}
               contentStyle={{
                 borderRadius: "8px",
                 border: "1px solid hsl(0 0% 90%)",
