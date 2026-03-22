@@ -18,11 +18,11 @@ HOST = "0.0.0.0"
 PORT = 5050
 
 # --- Dashboard API ---
-DASHBOARD_API_URL = "http://192.168.4.33:8000"   # swap to hosted URL when deployed
+DASHBOARD_API_URL = "http://172.20.10.13:8000"
 DEVICE_ID = "0822e8f3-6c03-4199-972a-846916419f82"
 DASHBOARD_ENABLED = True
 
-CHANGE_THRESHOLD = 0.096
+CHANGE_THRESHOLD = 0.05
 
 BINS = ["paper_cardboard", "metal_glass", "plastic", "trash"]
 
@@ -36,8 +36,8 @@ BIN_COLORS = {
 # Text prompts — tweak these to improve accuracy
 BIN_PROMPTS = {
     "paper_cardboard": "flat brown corrugated cardboard box or clean flat sheet of paper or notebook paper or cardboard sheet for recycling",
-    "metal_glass":     "glass bottle or transparent glass jar or shiny metal can or aluminium can or tin can or steel can, typically round or cylindrical in shape",
-    "plastic":         "plastic bottle or clear plastic cup or solo cup or plastic container or plastic bag or polythene",
+    "metal_glass":     "glass bottle or transparent glass jar or shiny metal can or aluminium can or tin can or steel can, typically round or cylindrical in shape with metallic silver rims at top and bottom and a pull tab",
+    "plastic":         "plastic bottle or clear plastic cup or solo cup or plastic container or plastic bag or polythene, non-metallic and without silver rims or a pull tab",
     "trash":           "crumpled dirty paper or greasy food wrapper or chip paper or greaseproof paper or soiled paper or food waste or general rubbish",
 }
 PROMPTS = [BIN_PROMPTS[b] for b in BINS]
@@ -179,20 +179,21 @@ while True:
             arr = np.frombuffer(jpg_bytes, dtype=np.uint8)
             frame = cv2.imdecode(arr, cv2.IMREAD_COLOR)
 
-            gray = cv2.GaussianBlur(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY), (5, 5), 0)
+            blurred = cv2.GaussianBlur(frame, (5, 5), 0).astype(np.float32)
 
             # Build background from first 30 frames
             if background is None:
-                bg_frames.append(gray.astype(np.float32))
+                bg_frames.append(blurred)
                 if len(bg_frames) >= 30:
-                    background = np.mean(bg_frames, axis=0).astype(np.uint8)
+                    background = np.mean(bg_frames, axis=0)
                     print("Background captured.")
                 changed_ratio = 0
                 object_detected = False
                 servo_cmd = b"WAIT".ljust(32)
             else:
-                diff = cv2.absdiff(gray, background)
-                changed_ratio = diff.mean() / 255.0
+                diff = np.abs(blurred - background) / 255.0
+                color_dev = diff.std(axis=2)
+                changed_ratio = (color_dev > 0.04).mean()
                 object_detected = changed_ratio > CHANGE_THRESHOLD
 
                 if done:
@@ -207,9 +208,9 @@ while True:
                         print("  Recalibrating background...")
                     servo_cmd = b"WAIT".ljust(32)
                 elif recalibrating:
-                    recal_frames.append(gray.astype(np.float32))
-                    if len(recal_frames) >= 10:
-                        background = np.mean(recal_frames, axis=0).astype(np.uint8)
+                    recal_frames.append(blurred)
+                    if len(recal_frames) >= 5:
+                        background = np.mean(recal_frames, axis=0)
                         recalibrating = False
                         recal_frames = []
                         print("  Background updated — ready for next item")

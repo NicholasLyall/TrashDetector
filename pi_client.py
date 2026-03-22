@@ -9,7 +9,7 @@ import numpy as np
 import RPi.GPIO as GPIO
 import time
 
-PC_HOST = "192.168.4.30"
+PC_HOST = "172.20.10.9"
 PC_PORT = 5050
 
 # Servo GPIO pins
@@ -31,11 +31,11 @@ def angle_to_duty(angle):
 
 def move_servos(angle1, angle2):
     servo1.ChangeDutyCycle(angle_to_duty(angle1))
-    time.sleep(0.5)
+    time.sleep(0.25)
     servo1.ChangeDutyCycle(0)
-    time.sleep(2.0)
+    time.sleep(1.0)
     servo2.ChangeDutyCycle(angle_to_duty(angle2))
-    time.sleep(0.5)
+    time.sleep(0.25)
     servo2.ChangeDutyCycle(0)
 
 
@@ -86,8 +86,8 @@ try:
         response = recv_all(sock, 32).decode().strip()
 
         if done:
-            time.sleep(3.0)
-            move_servos(110, 70)
+            time.sleep(1.0)
+            move_servos(110, 60)
             print("Returning to centre — ready for next item")
             done = False
         elif response != "WAIT":
