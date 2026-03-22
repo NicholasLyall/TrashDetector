@@ -1,25 +1,28 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+"use client";
+
+import { CategoryBreakdownCard } from "@/components/analytics/category-breakdown-card";
+import { SortingTrendCard } from "@/components/analytics/sorting-trend-card";
+import { EventHistoryCard } from "@/components/analytics/event-history-card";
 
 export default function AnalyticsPage() {
   return (
     <div className="space-y-6">
+      {/* Page header */}
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Analytics</h1>
-        <p className="mt-1 text-gray-500">
+        <h1 className="text-xl font-bold">Analytics</h1>
+        <p className="text-sm text-muted-foreground">
           Detailed sorting trends and category breakdowns
         </p>
       </div>
-      <Card>
-        <CardHeader>
-          <CardTitle>Analytics Overview</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-gray-600">
-            Category breakdown charts, time-based trends, and filterable event
-            lists will appear here.
-          </p>
-        </CardContent>
-      </Card>
+
+      {/* Chart cards - 2 column on lg, stack on mobile */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <CategoryBreakdownCard />
+        <SortingTrendCard />
+      </div>
+
+      {/* Event history - full width */}
+      <EventHistoryCard />
     </div>
   );
 }
