@@ -31,9 +31,11 @@ def angle_to_duty(angle):
 
 def move_servos(angle1, angle2):
     servo1.ChangeDutyCycle(angle_to_duty(angle1))
-    servo2.ChangeDutyCycle(angle_to_duty(angle2))
     time.sleep(0.5)
     servo1.ChangeDutyCycle(0)
+    time.sleep(2.0)
+    servo2.ChangeDutyCycle(angle_to_duty(angle2))
+    time.sleep(0.5)
     servo2.ChangeDutyCycle(0)
 
 
@@ -68,7 +70,7 @@ cap = cv2.VideoCapture(0)
 done = False
 trigger_time = None
 move_servos(110, 70)
-print("Servos initialised — servo1=110°")
+print("Servos initialised — servo1=110° servo2=90°")
 
 try:
     while True:
@@ -91,9 +93,10 @@ try:
                 done = False
                 trigger_time = None
         elif response != "WAIT":
-            angle = 70 if response == "metal_glass" else 150
-            print(f"Object detected ({response}) — moving to {angle}°")
-            move_servos(angle, 70)
+            angle1 = 150 if response in ("paper_cardboard", "plastic") else 70
+            angle2 = 140 if response in ("metal_glass", "plastic") else 0
+            print(f"Object detected ({response}) — servo1={angle1}° servo2={angle2}°")
+            move_servos(angle1, angle2)
             done = True
             trigger_time = time.time()
 
