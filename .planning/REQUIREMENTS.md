@@ -61,9 +61,9 @@
 
 ### Model Detail Page
 
-- [ ] **MDTL-01**: Model page shows average confidence with confidence banding visualization
-- [ ] **MDTL-02**: Model page shows uncertain rate and fallback rate details
-- [ ] **MDTL-03**: Model page shows confidence distribution chart
+- [x] **MDTL-01**: Model page shows average confidence with confidence banding visualization
+- [x] **MDTL-02**: Model page shows uncertain rate and fallback rate details
+- [x] **MDTL-03**: Model page shows confidence distribution chart
 
 ### Settings Page
 
@@ -175,9 +175,9 @@
 | IMPT-01 | Phase 8 | Pending |
 | IMPT-02 | Phase 8 | Pending |
 | IMPT-03 | Phase 8 | Pending |
-| MDTL-01 | Phase 9 | Pending |
-| MDTL-02 | Phase 9 | Pending |
-| MDTL-03 | Phase 9 | Pending |
+| MDTL-01 | Phase 9 | Complete |
+| MDTL-02 | Phase 9 | Complete |
+| MDTL-03 | Phase 9 | Complete |
 | STNG-01 | Phase 9 | Complete |
 | STNG-02 | Phase 9 | Complete |
 | API-01 | Phase 5 | Complete |
