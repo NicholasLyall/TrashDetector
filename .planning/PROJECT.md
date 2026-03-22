@@ -35,6 +35,7 @@ When a user drops trash into the sorter, the dashboard updates within 2 seconds 
 - [ ] Settings page with device metadata
 - [ ] Seed/mock data for development before Pi is ready
 - [ ] Pi runtime for camera capture, YOLO inference, servo control, event upload
+- [x] Overall aesthetic is premium SaaS, not cartoonish or sterile — Validated in Phase 10: Visual Polish and Demo Readiness
 
 ### Out of Scope
 
