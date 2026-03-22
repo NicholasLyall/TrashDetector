@@ -20,16 +20,16 @@ MOTION_THRESHOLD = 0.025
 PIXEL_DIFF_THRESHOLD = 8
 
 BIN_COLORS = {
-    "paper_cardboard": (0, 180, 255),
-    "metal_glass":     (255, 200, 0),
-    "plastic":         (0, 200, 0),
-    "trash":           (60, 60, 60),
+    "paper":       (0, 180, 255),
+    "metal_glass": (255, 200, 0),
+    "plastic":     (0, 200, 0),
+    "trash":       (60, 60, 60),
 }
 
 # Load model
 device = torch.device(DEVICE if torch.cuda.is_available() else "cpu")
 model = build_model(freeze_backbone=False)
-model.load_state_dict(torch.load(MODEL_DIR / "best_model_v2.pth", map_location=device))
+model.load_state_dict(torch.load(MODEL_DIR / "best_model_v3.pth", map_location=device))
 model.eval().to(device)
 print(f"Model loaded on {device}")
 

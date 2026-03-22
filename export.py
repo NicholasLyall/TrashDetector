@@ -10,11 +10,11 @@ from config import MODEL_DIR, IMG_SIZE, BINS
 
 def export_onnx():
     model = build_model(freeze_backbone=False)
-    model.load_state_dict(torch.load(MODEL_DIR / "best_model.pth", map_location="cpu"))
+    model.load_state_dict(torch.load(MODEL_DIR / "best_model_v3.pth", map_location="cpu"))
     model.eval()
 
     dummy_input = torch.randn(1, 3, IMG_SIZE, IMG_SIZE)
-    onnx_path = MODEL_DIR / "trash_classifier.onnx"
+    onnx_path = MODEL_DIR / "trash_classifier_v3.onnx"
 
     torch.onnx.export(
         model,
@@ -23,7 +23,8 @@ def export_onnx():
         input_names=["image"],
         output_names=["logits"],
         dynamic_axes={"image": {0: "batch"}, "logits": {0: "batch"}},
-        opset_version=17,
+        opset_version=18,
+        dynamo=False,
     )
     print(f"Exported to {onnx_path}")
     print(f"Classes: {BINS}")

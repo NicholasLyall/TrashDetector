@@ -7,18 +7,18 @@ MODEL_DIR.mkdir(exist_ok=True)
 
 # RealWaste 9 classes → your 4 bins
 CLASS_MAP = {
-    "paper":              "paper_cardboard",
-    "cardboard":          "paper_cardboard",
+    "cardboard":          "paper",
     "metal":              "metal_glass",
     "glass":              "metal_glass",
     "plastic":            "plastic",
+    "paper":              "trash",
     "miscellaneous_trash":"trash",
     "textile_trash":      "trash",
     "food_organics":      "trash",
     "vegetation":         "trash",
 }
 
-BINS = ["paper_cardboard", "metal_glass", "plastic", "trash"]
+BINS = ["paper", "metal_glass", "plastic", "trash"]
 NUM_CLASSES = len(BINS)
 
 # Model

@@ -10,7 +10,7 @@ from config import MODEL_DIR, IMG_SIZE, BINS, DEVICE
 # Load model
 device = torch.device(DEVICE if torch.cuda.is_available() else "cpu")
 model = build_model(freeze_backbone=False)
-model.load_state_dict(torch.load(MODEL_DIR / "best_model_v2.pth", map_location=device))
+model.load_state_dict(torch.load(MODEL_DIR / "best_model_v3.pth", map_location=device))
 model.eval().to(device)
 
 transform = transforms.Compose([
@@ -21,10 +21,10 @@ transform = transforms.Compose([
 ])
 
 BIN_COLORS = {
-    "paper_cardboard": (0, 180, 255),
-    "metal_glass":     (255, 200, 0),
-    "plastic":         (0, 200, 0),
-    "trash":           (60, 60, 60),
+    "paper":       (0, 180, 255),
+    "metal_glass": (255, 200, 0),
+    "plastic":     (0, 200, 0),
+    "trash":       (60, 60, 60),
 }
 
 # How much of the crop needs to change to count as an object (tune this)
