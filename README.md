@@ -1,73 +1,64 @@
 # Trash Detector
 
-An automated waste sorting system using a Raspberry Pi, webcam, and a fine-tuned EfficientNet-Lite0 classifier. Items placed under the camera are classified into one of 4 bins, and two servos route the waste to the correct bin.
+An automated waste sorting system using a Raspberry Pi, webcam, and CLIP zero-shot image classification. Items placed under the camera are classified into one of 4 bins, and two servos route the waste to the correct bin.
 
 ## How It Works
 
-1. A webcam mounted above a chute captures frames
-2. Background subtraction detects when an item is present
-3. EfficientNet-Lite0 classifies the item into one of 4 categories
-4. Two GPIO-controlled servos position the correct bin underneath
+1. A webcam on the Raspberry Pi streams frames over WiFi to a PC
+2. The PC runs background subtraction to detect when an item is present
+3. CLIP classifies the item into one of 4 categories using text descriptions
+4. The PC sends the bin result back to the Pi
+5. Two GPIO-controlled servos position the correct bin underneath
 
 ## Bins
 
 | Bin | Contents |
 |---|---|
-| Paper / Cardboard | Paper, cardboard |
-| Metal / Glass | Metal cans, glass bottles |
-| Plastic | All plastic types |
-| Trash | Everything else (textiles, food waste, misc) |
+| Paper / Cardboard | Clean flat paper, cardboard boxes |
+| Metal / Glass | Metal cans, glass bottles and jars |
+| Plastic | Plastic bottles, bags, cups, containers |
+| Trash | Greasy/crumpled paper, food waste, general rubbish |
 
 ## Model
 
-- **Architecture:** EfficientNet-Lite0 (pretrained on ImageNet, fine-tuned on RealWaste)
-- **Dataset:** [RealWaste](https://github.com/pedropro/RealWaste) — 4,752 real-world images across 9 original classes, remapped to 4 bins
-- **Training:** 2-phase transfer learning — classifier head first, then full fine-tune
-- **Validation accuracy:** 94.9% (v2)
-- **Input size:** 224×224
-- **Export format:** ONNX (runs on Pi via ONNX Runtime, no GPU needed)
+**Inference:** [CLIP](https://openai.com/research/clip) (`openai/clip-vit-base-patch32`) — zero-shot classification using text descriptions, no task-specific training required. Runs on PC GPU via HuggingFace Transformers.
 
-### Training Breakdown
+**Training (kept for reference):** EfficientNet-Lite0 fine-tuned on [RealWaste](https://github.com/pedropro/RealWaste) — 4,752 real-world images across 9 original classes, remapped to 4 bins. Achieved 94.9% validation accuracy (v2). Training code retained in repo.
 
-```
-Phase 1 — 10 epochs, lr=1e-3
-  Backbone frozen, only classifier head trained
+### CLIP Bin Prompts
 
-Phase 2 — 30 epochs, lr=1e-4
-  Full network fine-tuned end-to-end
-```
+Classification is driven entirely by these text descriptions — edit them in `pc_server.py` to adjust behaviour:
 
-Per-class results:
-
-```
-paper_cardboard   precision 0.95   recall 0.94   f1 0.94
-metal_glass       precision 0.94   recall 0.93   f1 0.93
-plastic           precision 0.90   recall 0.92   f1 0.91
-trash             precision 0.98   recall 0.98   f1 0.98
+```python
+"paper_cardboard": "flat brown corrugated cardboard box or clean flat sheet of paper or notebook paper or cardboard sheet for recycling"
+"metal_glass":     "glass bottle or transparent glass jar or shiny metal can or aluminium can or tin can or steel can"
+"plastic":         "plastic bottle or clear plastic cup or solo cup or plastic container or plastic bag or polythene"
+"trash":           "crumpled dirty paper or greasy food wrapper or chip paper or greaseproof paper or soiled paper or food waste or general rubbish"
 ```
 
 ## Project Structure
 
 ```
 TrashDetector/
+├── pc_server.py       # runs on PC — CLIP inference, motion detection, UI, sends servo commands
+├── pi_client.py       # runs on Pi — streams webcam frames, receives commands, moves servos
 ├── config.py          # bins, class mapping, hyperparameters
 ├── dataset.py         # RealWaste loader, augmentation, weighted sampler
-├── model.py           # EfficientNet-Lite0 setup
-├── train.py           # 2-phase training loop
-├── export.py          # export trained model to ONNX
-├── webcam_test.py     # live webcam demo with motion detection
-├── data/realwaste/    # put RealWaste dataset here
-└── models/            # saved model weights go here
+├── model.py           # EfficientNet-Lite0 setup (training only)
+├── train.py           # 2-phase training loop (training only)
+├── export.py          # export trained model to ONNX (training only)
+├── webcam_test.py     # local webcam demo with motion detection
+├── data/realwaste/    # put RealWaste dataset here (training only)
+└── models/            # saved model weights (training only)
 ```
 
 ## Setup
 
 ### Requirements
-- Python 3.11
-- NVIDIA GPU with CUDA 12.8 (for training)
-- Raspberry Pi 4/5 (for deployment)
+- **PC:** Python 3.11, NVIDIA GPU with CUDA 12.8
+- **Pi:** Raspberry Pi 3B or newer, USB webcam, 2× servo motors
 
-### Install
+### PC Install
 
 ```bash
 # Install PyTorch (CUDA 12.8)
@@ -75,59 +66,40 @@ pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
 
 # Install remaining dependencies
 pip install -r requirements.txt
+pip install transformers
 ```
 
-### Dataset
-
-Download [RealWaste](https://github.com/pedropro/RealWaste) and place it at `data/realwaste/` so the folder contains subdirectories like `Cardboard/`, `Glass/`, etc.
-
-### Train
+### Pi Install
 
 ```bash
-python train.py
+pip install opencv-python-headless RPi.GPIO numpy --index-url https://www.piwheels.org/simple
+sudo apt-get install libatlas-base-dev
 ```
 
-Saves best model to `models/best_model_v2.pth`. Training takes ~10 minutes on an RTX 4060+ with CUDA.
+### Run
 
-### Test with Webcam
-
+**PC first:**
 ```bash
-python webcam_test.py
+py -3.11 pc_server.py
 ```
 
-- Motion bar at the bottom shows how much has changed vs the background
-- Blue threshold line — cross it to trigger classification
-- Press **R** to recapture background if lighting changes
-- Press **Q** to quit
-
-### Export for Raspberry Pi
-
+**Then Pi:**
 ```bash
-python export.py
+python3 pi_client.py
 ```
 
-Exports to `models/trash_classifier.onnx`. Copy this file to your Pi and run inference with `onnxruntime`.
-
-## Raspberry Pi Deployment
-
-Install ONNX Runtime on the Pi:
-
-```bash
-pip install onnxruntime
-```
-
-The `.onnx` model runs on CPU — no GPU required. Expected inference time ~125ms per frame on Pi 4.
+CLIP (~600MB) downloads automatically on first run and is cached after that.
 
 ## Hardware
 
-- Raspberry Pi 4 or 5
-- USB webcam (Logitech Brio 101 recommended)
-- 2× servo motors wired to GPIO pins
+- Raspberry Pi 3B (or newer)
+- Logitech Brio 101 webcam (USB)
+- 2× servo motors wired to GPIO 17 and 18
 - 4-bin sorting chute
 
 ### Servo Logic
 
-2 servos give 4 bin positions (2-bit binary):
+2 servos × 2 positions = 4 bins:
 
 | Bin | Servo 1 | Servo 2 |
 |---|---|---|
