@@ -29,7 +29,7 @@ When a user drops trash into the sorter, the dashboard updates within 2 seconds 
 - [ ] Supabase Postgres schema (sort_events, devices tables)
 - [ ] Supabase Storage for captured item images
 - [ ] Event ingestion API accepting image + metadata from Pi
-- [ ] Analytics page with deeper category charts and time-based trends
+- [x] Analytics page with deeper category charts and time-based trends — Validated in Phase 7: Analytics Page
 - [x] Impact page with environmental equivalents (trees saved, etc.) — Validated in Phase 8: Impact Page
 - [ ] Model performance page with confidence banding
 - [ ] Settings page with device metadata
