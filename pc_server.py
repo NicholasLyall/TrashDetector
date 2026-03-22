@@ -7,11 +7,9 @@ import struct
 import numpy as np
 import cv2
 import torch
-import torch.nn.functional as F
-from torchvision import transforms
 from PIL import Image
-from model import build_model
-from config import MODEL_DIR, IMG_SIZE, BINS, DEVICE
+from transformers import CLIPProcessor, CLIPModel
+from config import DEVICE
 
 HOST = "0.0.0.0"
 PORT = 5050
@@ -19,34 +17,40 @@ PORT = 5050
 MOTION_THRESHOLD = 0.025
 PIXEL_DIFF_THRESHOLD = 8
 
+BINS = ["paper_cardboard", "metal_glass", "plastic", "trash"]
+
 BIN_COLORS = {
-    "paper":       (0, 180, 255),
-    "metal_glass": (255, 200, 0),
-    "plastic":     (0, 200, 0),
-    "trash":       (60, 60, 60),
+    "paper_cardboard": (0, 180, 255),
+    "metal_glass":     (255, 200, 0),
+    "plastic":         (0, 200, 0),
+    "trash":           (60, 60, 60),
 }
 
-# Load model
-device = torch.device(DEVICE if torch.cuda.is_available() else "cpu")
-model = build_model(freeze_backbone=False)
-model.load_state_dict(torch.load(MODEL_DIR / "best_model_v3.pth", map_location=device))
-model.eval().to(device)
-print(f"Model loaded on {device}")
+# Text prompts — tweak these to improve accuracy
+BIN_PROMPTS = {
+    "paper_cardboard": "flat brown corrugated cardboard box or clean flat sheet of paper or notebook paper or cardboard sheet for recycling",
+    "metal_glass":     "glass bottle or transparent glass jar or shiny metal can or aluminium can or tin can or steel can",
+    "plastic":         "plastic bottle or clear plastic cup or solo cup or plastic container or plastic bag or polythene",
+    "trash":           "crumpled dirty paper or greasy food wrapper or chip paper or greaseproof paper or soiled paper or food waste or general rubbish",
+}
+PROMPTS = [BIN_PROMPTS[b] for b in BINS]
 
-transform = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(IMG_SIZE),
-    transforms.ToTensor(),
-    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
-])
+# Load CLIP
+device = torch.device(DEVICE if torch.cuda.is_available() else "cpu")
+print("Loading CLIP...")
+clip_model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32").to(device)
+clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+clip_model.eval()
+print(f"CLIP loaded on {device}")
 
 
 def classify_frame(frame):
     pil_img = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-    tensor = transform(pil_img).unsqueeze(0).to(device)
+    inputs = clip_processor(text=PROMPTS, images=pil_img, return_tensors="pt", padding=True)
+    inputs = {k: v.to(device) for k, v in inputs.items()}
     with torch.no_grad():
-        logits = model(tensor)
-        probs = F.softmax(logits, dim=1)[0]
+        outputs = clip_model(**inputs)
+        probs = outputs.logits_per_image.softmax(dim=1)[0]
     pred_bin = BINS[probs.argmax().item()]
     return pred_bin, probs
 
