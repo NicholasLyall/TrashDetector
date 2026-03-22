@@ -35,17 +35,17 @@ export function LatestItemCard({ event, isNew }: LatestItemCardProps) {
 
   return (
     <Card
-      className={`ring-1 ring-foreground/5${
+      className={`${
         showPulse && isNew ? " animate-pulse-highlight" : ""
       }`}
     >
-      <div className="flex flex-col sm:flex-row gap-4 p-4">
-        <div className="relative w-full sm:w-[200px] h-[200px] rounded-lg bg-muted/30 flex items-center justify-center overflow-hidden">
+      <div className="flex flex-col sm:flex-row gap-5 p-5">
+        <div className="relative w-full sm:w-[320px] h-[300px] rounded-[1.5rem] bg-slate-50 flex items-center justify-center overflow-hidden border border-slate-100 shadow-sm">
           {event.image_url ? (
             <img
               src={event.image_url}
               alt={`Sorted ${event.label} item`}
-              className="h-full w-full object-cover rounded-lg"
+              className="h-full w-full object-cover rounded-[1.5rem]"
             />
           ) : (
             <CategoryIllustration category={event.label} size="lg" />
@@ -53,23 +53,37 @@ export function LatestItemCard({ event, isNew }: LatestItemCardProps) {
         </div>
 
         <div className="flex-1 flex flex-col gap-2 justify-center">
-          <span className="text-lg font-bold text-card-foreground">
-            {itemName}
-          </span>
+          <div className="flex justify-between items-start">
+            <span className="text-2xl font-extrabold text-slate-800">
+              {itemName}
+            </span>
+            <span className="text-[11px] text-teal-600 font-bold bg-teal-50 px-2 py-1 rounded-lg">
+              <time
+                dateTime={event.timestamp}
+                suppressHydrationWarning
+              >
+                {formatRelativeTime(event.timestamp)}
+              </time>
+            </span>
+          </div>
 
-          <CategoryBadge category={event.label} />
+          <div className="mb-4">
+            <CategoryBadge category={event.label} />
+          </div>
 
-          <span className="text-sm text-muted-foreground">
-            Confidence: {Math.round(event.confidence * 100)}%
-          </span>
-
-          <time
-            dateTime={event.timestamp}
-            className="text-sm text-muted-foreground"
-            suppressHydrationWarning
-          >
-            {formatRelativeTime(event.timestamp)}
-          </time>
+          {/* Confidence progress bar */}
+          <div className="mt-auto">
+            <div className="text-sm font-bold text-slate-500 mb-2 flex justify-between">
+              <span>Confidence Score</span>
+              <span className="text-emerald-600">{(event.confidence).toFixed(2)}</span>
+            </div>
+            <div className="w-full h-3 rounded-full bg-slate-100 overflow-hidden shadow-inner">
+              <div
+                className="h-full rounded-full bg-emerald-400 transition-all duration-500"
+                style={{ width: `${Math.round(event.confidence * 100)}%` }}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </Card>

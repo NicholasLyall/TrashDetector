@@ -3,9 +3,9 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { computeModelStats } from "@/lib/compute-metrics";
 import { sortEventsMockData } from "@/lib/mock-data";
-import { CheckCircle, HelpCircle, Trash2 } from "lucide-react";
+import { CheckCircle, HelpCircle, Trash2, ScanLine } from "lucide-react";
 
-/** Confidence thresholds for segmenting the distribution bar. */
+/** Confidence thresholds for segmenting the distribution. */
 const LOW_THRESHOLD = 0.5;
 const HIGH_THRESHOLD = 0.8;
 
@@ -41,67 +41,27 @@ function computeConfidenceDistribution(
   };
 }
 
-interface MetricItemProps {
-  readonly icon: React.ElementType;
-  readonly iconColor: string;
-  readonly value: number;
-  readonly label: string;
-}
+function DistributionBars({ lowPct, medPct, highPct }: ConfidenceDistribution) {
+  const bars = [
+    { label: "LOW", pct: lowPct, barColor: "bg-slate-400" },
+    { label: "MEDIUM", pct: medPct, barColor: "bg-teal-400" },
+    { label: "HIGH", pct: highPct, barColor: "bg-emerald-400" },
+  ];
 
-function MetricItem({ icon: Icon, iconColor, value, label }: MetricItemProps) {
   return (
-    <div className="flex flex-col items-center text-center gap-1">
-      <Icon className={`h-5 w-5 ${iconColor}`} aria-hidden="true" />
-      <span className="text-xl font-bold">{value}%</span>
-      <span className="text-xs text-muted-foreground">{label}</span>
-    </div>
-  );
-}
-
-function SegmentedBar({ lowPct, medPct, highPct }: ConfidenceDistribution) {
-  return (
-    <div className="mt-4 space-y-2">
-      <div className="flex items-center justify-between text-xs text-muted-foreground">
-        <span>Confidence Distribution</span>
-      </div>
-      <div className="flex h-3 w-full overflow-hidden rounded-full bg-muted">
-        {lowPct > 0 && (
-          <div
-            className="bg-red-500 transition-all"
-            style={{ width: `${lowPct}%` }}
-            title={`Low (<50%): ${lowPct}%`}
-          />
-        )}
-        {medPct > 0 && (
-          <div
-            className="bg-amber-400 transition-all"
-            style={{ width: `${medPct}%` }}
-            title={`Medium (50-80%): ${medPct}%`}
-          />
-        )}
-        {highPct > 0 && (
-          <div
-            className="bg-green-500 transition-all"
-            style={{ width: `${highPct}%` }}
-            title={`High (>80%): ${highPct}%`}
-          />
-        )}
-      </div>
-      {/* Legend for the bar */}
-      <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground">
-        <div className="flex items-center gap-1">
-          <span className="h-2 w-2 rounded-full bg-red-500" />
-          <span>Low {lowPct}%</span>
+    <div className="space-y-5 px-1">
+      {bars.map((bar) => (
+        <div key={bar.label} className="flex items-center gap-4">
+          <span className="text-[11px] font-bold text-slate-400 w-12 text-right tracking-widest">{bar.label}</span>
+          <div className="flex-1 h-5 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
+            <div
+              className={`absolute top-0 left-0 h-full rounded-full ${bar.barColor} transition-all duration-1000`}
+              style={{ width: `${Math.max(bar.pct, 8)}%` }}
+            />
+            <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-white tracking-wider z-10">{bar.pct}%</span>
+          </div>
         </div>
-        <div className="flex items-center gap-1">
-          <span className="h-2 w-2 rounded-full bg-amber-400" />
-          <span>Med {medPct}%</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <span className="h-2 w-2 rounded-full bg-green-500" />
-          <span>High {highPct}%</span>
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
@@ -114,33 +74,35 @@ export function ModelPerformanceCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Model Performance</CardTitle>
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-blue-50 text-blue-500 rounded-xl">
+            <ScanLine className="h-5 w-5" />
+          </div>
+          <CardTitle>Model Performance</CardTitle>
+        </div>
       </CardHeader>
       <CardContent>
-        {/* Three metrics in a row (per D-09) */}
-        <div className="grid grid-cols-3 gap-4">
-          <MetricItem
-            icon={CheckCircle}
-            iconColor="text-green-600"
-            value={stats.avgConfidence}
-            label="Avg Confidence"
-          />
-          <MetricItem
-            icon={HelpCircle}
-            iconColor="text-amber-500"
-            value={stats.uncertainRate}
-            label="Uncertain Rate"
-          />
-          <MetricItem
-            icon={Trash2}
-            iconColor="text-red-500"
-            value={stats.fallbackRate}
-            label="Fallback Rate"
-          />
+        {/* Three metric tiles */}
+        <div className="grid grid-cols-3 gap-3 mb-8">
+          <div className="bg-emerald-50 rounded-[1.5rem] p-4 flex flex-col items-center justify-center text-center shadow-sm border border-emerald-100/50">
+            <CheckCircle className="h-[18px] w-[18px] text-emerald-500 mb-2" />
+            <span className="text-2xl font-extrabold text-emerald-700">{stats.avgConfidence}%</span>
+            <span className="text-[10px] font-bold text-emerald-600/80 uppercase tracking-widest mt-1">Avg Conf.</span>
+          </div>
+          <div className="bg-amber-50 rounded-[1.5rem] p-4 flex flex-col items-center justify-center text-center shadow-sm border border-amber-100/50">
+            <HelpCircle className="h-[18px] w-[18px] text-amber-500 mb-2" />
+            <span className="text-2xl font-extrabold text-amber-700">{stats.uncertainRate}%</span>
+            <span className="text-[10px] font-bold text-amber-600/80 uppercase tracking-widest mt-1">Uncertain</span>
+          </div>
+          <div className="bg-rose-50 rounded-[1.5rem] p-4 flex flex-col items-center justify-center text-center shadow-sm border border-rose-100/50">
+            <Trash2 className="h-[18px] w-[18px] text-rose-500 mb-2" />
+            <span className="text-2xl font-extrabold text-rose-700">{stats.fallbackRate}%</span>
+            <span className="text-[10px] font-bold text-rose-600/80 uppercase tracking-widest mt-1">Fallback</span>
+          </div>
         </div>
 
-        {/* Segmented horizontal bar (per D-10, D-11) */}
-        <SegmentedBar
+        {/* Distribution bars */}
+        <DistributionBars
           lowPct={distribution.lowPct}
           medPct={distribution.medPct}
           highPct={distribution.highPct}

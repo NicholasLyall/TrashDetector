@@ -11,6 +11,13 @@
 import type { WasteCategory } from "./types";
 import { API_BASE_URL } from "./api";
 
+/**
+ * Default device UUID matching the seed device ("Pi Sorter Alpha").
+ * The sort_events.source_device_id column is a UUID foreign key,
+ * so we must send a valid device UUID — not an arbitrary string.
+ */
+const DEMO_DEVICE_ID = "d0000000-0000-0000-0000-000000000001";
+
 interface DemoItem {
   readonly label: WasteCategory;
   readonly name: string;
@@ -63,7 +70,7 @@ export async function triggerDemoEvent(): Promise<{
   const formData = new FormData();
   formData.append("label", item.label);
   formData.append("confidence", String(item.confidence));
-  formData.append("source_device_id", "demo-dashboard");
+  formData.append("source_device_id", DEMO_DEVICE_ID);
   formData.append("image", imageFile);
 
   const res = await fetch(`${API_BASE_URL}/events`, {

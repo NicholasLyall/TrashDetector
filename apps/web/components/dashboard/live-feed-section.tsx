@@ -10,7 +10,7 @@ import { StaleDataWarning } from "@/components/dashboard/stale-data-warning";
 import { BackendEmptyState } from "@/components/dashboard/backend-empty-state";
 import { calculateTreesEquivalent } from "@/lib/categories";
 import { DemoButton } from "@/components/dashboard/demo-button";
-import { TreePine } from "lucide-react";
+import { TreePine, Video, Leaf } from "lucide-react";
 
 /**
  * Container component composing the full live feed section:
@@ -79,29 +79,31 @@ export function LiveFeedSection() {
     <section aria-labelledby="live-feed-title">
       <Card>
         <CardHeader>
-          <div className="flex items-center gap-2">
-            {/* Green status dot with pulse animation (FEED-05) */}
-            <span className="relative flex h-2.5 w-2.5" aria-label="System active">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75 motion-reduce:hidden" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500" />
-            </span>
-
-            <CardTitle id="live-feed-title" className="text-lg font-bold">
-              Live Feed
-            </CardTitle>
-
-            {/* Tree equivalence badge (FEED-07, D-10, D-11, D-12) */}
-            <span className="ml-auto inline-flex items-center gap-1.5 text-sm text-muted-foreground">
-              <TreePine className="h-4 w-4 text-[hsl(var(--eco-green))]" aria-hidden="true" />
-              <span>
-                Equivalent to planting{" "}
-                <strong className="text-foreground">{treesEquivalent}</strong>{" "}
-                trees
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-teal-50 text-teal-600 rounded-xl">
+                <Video className="h-5 w-5" />
+              </div>
+              <CardTitle id="live-feed-title" className="text-xl font-extrabold">
+                Live Feed
+              </CardTitle>
+              {/* Green status dot with pulse animation (FEED-05) */}
+              <span className="relative flex h-2.5 w-2.5 ml-2" aria-label="System active">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
               </span>
-            </span>
+            </div>
 
-            {/* Demo button (D-01) */}
-            <DemoButton />
+            <div className="flex items-center gap-2">
+              {/* Tree equivalence badge (FEED-07, D-10, D-11, D-12) */}
+              <span className="text-xs bg-emerald-50 text-emerald-600 px-4 py-2 rounded-full flex items-center gap-1.5 font-bold border border-emerald-100/50">
+                <Leaf className="h-3.5 w-3.5" aria-hidden="true" />
+                Planting {treesEquivalent} trees equiv.
+              </span>
+
+              {/* Demo button (D-01) */}
+              <DemoButton />
+            </div>
           </div>
         </CardHeader>
 

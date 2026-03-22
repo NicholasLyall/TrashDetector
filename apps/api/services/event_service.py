@@ -70,7 +70,8 @@ async def create_event(
     waste_diverted_kg, co2_saved_kg = compute_impact(final_label)
 
     timestamp = datetime.now(timezone.utc)
-    image_path = f"{timestamp.strftime('%Y%m%d_%H%M%S')}_{final_label}.jpg"
+    event_id = str(uuid.uuid4())
+    image_path = f"{timestamp.strftime('%Y%m%d_%H%M%S')}_{event_id[:8]}_{final_label}.jpg"
 
     # Upload image to Supabase Storage (D-08, D-10)
     image_bytes = await image.read()
@@ -81,8 +82,6 @@ async def create_event(
     )
 
     image_url = supabase.storage.from_("sort-images").get_public_url(image_path)
-
-    event_id = str(uuid.uuid4())
 
     # Insert event record (D-02, D-03: label == routed_bin after fallback)
     supabase.table("sort_events").insert(

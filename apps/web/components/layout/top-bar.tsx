@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, ChevronDown, Hash, Percent, Target, AlertTriangle } from "lucide-react";
+import { Menu, ChevronDown, Package, Percent, Target, AlertTriangle, LayoutDashboard, Recycle, BarChart3, RotateCcw } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -9,18 +9,26 @@ import { AnimatedNumber } from "@/components/dashboard/animated-number";
 
 function KpiChip({
   icon: Icon,
+  iconBg,
+  iconColor,
   label,
   value,
 }: {
   readonly icon: React.ElementType;
+  readonly iconBg: string;
+  readonly iconColor: string;
   readonly label: string;
   readonly value: React.ReactNode;
 }) {
   return (
-    <div className="flex items-center gap-1.5 rounded-full bg-gray-50 px-3 py-1.5 text-sm">
-      <Icon className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
-      <span className="text-muted-foreground">{label}:</span>
-      <span className="font-semibold">{value}</span>
+    <div className="flex items-center gap-2 rounded-full bg-gradient-to-r from-white to-emerald-50/50 px-3 py-1.5 shadow-sm border border-emerald-100/40 min-w-[8rem]">
+      <div className={`flex h-8 w-8 items-center justify-center rounded-full ${iconBg} ${iconColor} shrink-0`}>
+        <Icon className="h-3.5 w-3.5" strokeWidth={2.5} aria-hidden="true" />
+      </div>
+      <div className="flex flex-col justify-center">
+        <span className="text-sm font-bold leading-none text-slate-700">{value}</span>
+        <span className="text-[9px] text-slate-400 font-bold uppercase leading-tight mt-0.5">{label}</span>
+      </div>
     </div>
   );
 }
@@ -33,7 +41,7 @@ export function TopBar({
   const { metrics } = useMetrics();
 
   return (
-    <header className="flex h-16 items-center justify-between border-b border-gray-200 bg-white px-4 md:px-6">
+    <header className="relative flex h-16 items-center justify-between px-4 md:px-8 shrink-0 z-10" style={{ background: "linear-gradient(to right, #d2ede5, #c8e8de, #d0e8e8, #cde4ec)" }}>
       {/* Mobile menu button */}
       <Button
         variant="ghost"
@@ -46,22 +54,27 @@ export function TopBar({
       </Button>
 
       {/* Title section */}
-      <div className="flex items-center gap-1">
-        <h1 className="text-base font-semibold text-gray-800">
+      <div className="flex items-center gap-3 cursor-pointer hover:bg-white/30 p-2 -ml-2 rounded-2xl transition-colors">
+        <LayoutDashboard className="text-slate-500 h-6 w-6" />
+        <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight">
           Smart Dashboard
         </h1>
-        <ChevronDown className="h-4 w-4 text-gray-400" />
+        <ChevronDown className="h-[18px] w-[18px] text-slate-400 ml-1" />
       </div>
 
       {/* KPI chip strip */}
       <div className="hidden flex-1 items-center justify-center gap-2 md:flex">
         <KpiChip
-          icon={Hash}
+          icon={Package}
+          iconBg="bg-teal-50"
+          iconColor="text-teal-600"
           label="Total Items"
           value={<AnimatedNumber value={metrics?.total_items ?? 0} />}
         />
         <KpiChip
-          icon={Percent}
+          icon={Recycle}
+          iconBg="bg-emerald-50"
+          iconColor="text-emerald-500"
           label="Recycling Rate"
           value={
             <AnimatedNumber
@@ -71,7 +84,9 @@ export function TopBar({
           }
         />
         <KpiChip
-          icon={Target}
+          icon={BarChart3}
+          iconBg="bg-amber-50"
+          iconColor="text-amber-500"
           label="Avg Confidence"
           value={
             <AnimatedNumber
@@ -81,7 +96,9 @@ export function TopBar({
           }
         />
         <KpiChip
-          icon={AlertTriangle}
+          icon={RotateCcw}
+          iconBg="bg-rose-50"
+          iconColor="text-rose-500"
           label="Fallback Rate"
           value={
             <AnimatedNumber
@@ -93,7 +110,7 @@ export function TopBar({
       </div>
 
       {/* User avatar */}
-      <Avatar size="sm">
+      <Avatar className="h-9 w-9">
         <AvatarFallback className="bg-emerald-100 text-emerald-700 text-xs">
           AD
         </AvatarFallback>

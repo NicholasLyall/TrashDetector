@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Label as RechartsLabel } from "recharts";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useBreakdown } from "@/hooks/use-breakdown";
 import { BackendEmptyState } from "@/components/dashboard/backend-empty-state";
 import { CATEGORY_CONFIG } from "@/lib/categories";
 import { formatNumber } from "@/lib/mock-data";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, PieChart as PieChartIcon } from "lucide-react";
 import type { WasteCategory } from "@/lib/types";
 
 /** Short display names for the legend. */
@@ -17,7 +17,15 @@ const LEGEND_LABELS: Readonly<Record<WasteCategory, string>> = {
   paper_cardboard: "Paper",
   metal_glass: "Metal/Glass",
   plastic: "Plastic",
-  trash: "Trash",
+  trash: "Misc",
+};
+
+/** Category emoji-style labels for legend icons */
+const LEGEND_ICONS: Readonly<Record<WasteCategory, string>> = {
+  paper_cardboard: "\uD83D\uDCC4",
+  metal_glass: "\uD83C\uDF79",
+  plastic: "\uD83E\uDDF4",
+  trash: "\uD83D\uDDD1\uFE0F",
 };
 
 /** Map API label string to a chart color via CATEGORY_CONFIG. */
@@ -35,15 +43,17 @@ interface ChartEntry {
 
 function LegendItem({ entry }: { readonly entry: ChartEntry }) {
   return (
-    <div className="flex items-center gap-2">
-      <span
-        className="h-2.5 w-2.5 rounded-full shrink-0"
-        style={{ backgroundColor: entry.color }}
-      />
-      <span className="text-sm text-muted-foreground">
-        {LEGEND_LABELS[entry.category]}
-      </span>
-      <span className="text-sm font-medium">{entry.percentage}%</span>
+    <div className="flex items-center justify-between gap-3">
+      <div className="flex items-center gap-2">
+        <span
+          className="h-3 w-3 rounded-full shrink-0"
+          style={{ backgroundColor: entry.color }}
+        />
+        <span className="text-sm text-muted-foreground">
+          {LEGEND_LABELS[entry.category]}
+        </span>
+      </div>
+      <span className="text-sm font-semibold">{entry.percentage}%</span>
     </div>
   );
 }
@@ -110,60 +120,63 @@ export function WasteCompositionCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Waste Composition</CardTitle>
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-emerald-50 text-emerald-500 rounded-xl">
+            <PieChartIcon className="h-5 w-5" />
+          </div>
+          <CardTitle>Waste Composition</CardTitle>
+        </div>
       </CardHeader>
       <CardContent>
-        {/* Donut chart with center text overlay */}
-        <div className="relative">
-          <ResponsiveContainer width="100%" height={200}>
-            <PieChart>
-              <Pie
-                data={chartData as ChartEntry[]}
-                dataKey="count"
-                nameKey="category"
-                innerRadius={55}
-                outerRadius={80}
-                paddingAngle={3}
-                strokeWidth={0}
-              >
-                {chartData.map((entry) => (
-                  <Cell key={entry.category} fill={entry.color} />
-                ))}
-              </Pie>
-              <Tooltip
-                formatter={(value, name) => [
-                  String(value),
-                  LEGEND_LABELS[name as WasteCategory] ?? String(name),
-                ]}
-              />
-            </PieChart>
-          </ResponsiveContainer>
-          {/* Center text overlay */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="text-center">
-              <div className="text-2xl font-bold">
-                {formatNumber(totalItems)}
-              </div>
-              <div className="text-xs text-muted-foreground">items</div>
+        {/* Centered donut chart */}
+        <div className="flex flex-col items-center gap-6">
+          <div className="h-[220px] w-full relative">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={chartData as ChartEntry[]}
+                  dataKey="count"
+                  nameKey="category"
+                  innerRadius={65}
+                  outerRadius={95}
+                  paddingAngle={4}
+                  strokeWidth={0}
+                  cornerRadius={8}
+                >
+                  {chartData.map((entry) => (
+                    <Cell key={entry.category} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip
+                  formatter={(value, name) => [
+                    String(value),
+                    LEGEND_LABELS[name as WasteCategory] ?? String(name),
+                  ]}
+                />
+              </PieChart>
+            </ResponsiveContainer>
+            {/* Center text for donut */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              <span className="text-3xl font-extrabold text-slate-800">{totalItems}</span>
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Total</span>
             </div>
           </div>
-        </div>
 
-        {/* Legend below chart */}
-        <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-2">
-          {chartData.map((entry) => (
-            <LegendItem key={entry.category} entry={entry} />
-          ))}
-        </div>
+          {/* Legend grid */}
+          <div className="w-full grid grid-cols-2 gap-y-4 gap-x-2">
+            {chartData.map((entry) => (
+              <LegendItem key={entry.category} entry={entry} />
+            ))}
+          </div>
 
-        {/* View Full Analytics link */}
-        <Link
-          href="/analytics"
-          className="mt-4 flex items-center gap-1 text-sm font-medium text-emerald-600 hover:text-emerald-700"
-        >
-          View Full Analytics
-          <ArrowRight className="h-4 w-4" />
-        </Link>
+          {/* View Full Analytics link */}
+          <Link
+            href="/analytics"
+            className="text-sm font-bold text-teal-600 hover:text-teal-700 w-full text-center hover:bg-teal-50 py-2 rounded-xl transition-colors"
+          >
+            View Full Analytics &rarr;
+          </Link>
+        </div>
       </CardContent>
     </Card>
   );
