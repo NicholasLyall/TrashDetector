@@ -164,10 +164,29 @@
   }
 }
 
+@keyframes pulse-highlight {
+  0% {
+    box-shadow: 0 0 0 0 hsl(142 71% 45% / 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 8px hsl(142 71% 45% / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 hsl(142 71% 45% / 0);
+  }
+}
+
+@layer utilities {
+  .animate-pulse-highlight {
+    animation: pulse-highlight 1s ease-out;
+  }
+}
+
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   .animate-float,
-  .animate-cloud-drift {
+  .animate-cloud-drift,
+  .animate-pulse-highlight {
     animation: none;
   }
 }

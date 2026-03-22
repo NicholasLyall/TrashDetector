@@ -9,6 +9,7 @@ import { FeedSkeleton } from "@/components/dashboard/feed-skeleton";
 import { StaleDataWarning } from "@/components/dashboard/stale-data-warning";
 import { BackendEmptyState } from "@/components/dashboard/backend-empty-state";
 import { calculateTreesEquivalent } from "@/lib/categories";
+import { DemoButton } from "@/components/dashboard/demo-button";
 import { TreePine } from "lucide-react";
 
 /**
@@ -59,6 +60,15 @@ export function LiveFeedSection() {
   const latestEvent = events[0] ?? null;
   const recentEvents = events.slice(1);
 
+  // Track previous latest event ID to detect new arrivals (D-04)
+  const prevLatestIdRef = useRef<string | null>(null);
+  const isNewEvent =
+    latestEvent != null && latestEvent.id !== prevLatestIdRef.current;
+
+  useEffect(() => {
+    prevLatestIdRef.current = latestEvent?.id ?? null;
+  }, [latestEvent?.id]);
+
   // Filter to today's events before calculating tree equivalence (D-10)
   const todayEvents = events.filter(
     (e) => new Date(e.timestamp).toDateString() === new Date().toDateString()
@@ -89,6 +99,9 @@ export function LiveFeedSection() {
                 trees
               </span>
             </span>
+
+            {/* Demo button (D-01) */}
+            <DemoButton />
           </div>
         </CardHeader>
 
@@ -96,7 +109,7 @@ export function LiveFeedSection() {
           {isStale && <StaleDataWarning lastUpdatedMs={lastSuccessRef.current} />}
 
           {latestEvent ? (
-            <LatestItemCard event={latestEvent} />
+            <LatestItemCard event={latestEvent} isNew={isNewEvent} />
           ) : (
             /* Empty state */
             <div className="flex flex-col items-center justify-center py-12 text-center">

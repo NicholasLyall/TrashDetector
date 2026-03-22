@@ -2,8 +2,8 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
-import { formatNumber } from "@/lib/mock-data";
 import { HeroIllustration } from "@/components/dashboard/hero-illustration";
+import { AnimatedNumber } from "@/components/dashboard/animated-number";
 import { useMetrics } from "@/hooks/use-metrics";
 import { HeroSkeleton } from "@/components/dashboard/hero-skeleton";
 import { StaleDataWarning } from "@/components/dashboard/stale-data-warning";
@@ -14,7 +14,7 @@ interface StatCardProps {
   readonly icon: React.ElementType;
   readonly iconBgColor: string;
   readonly iconColor: string;
-  readonly value: string;
+  readonly value: React.ReactNode;
   readonly label: string;
 }
 
@@ -76,21 +76,31 @@ export function HeroImpactSection() {
       icon: Recycle,
       iconBgColor: "hsl(142 71% 45% / 0.1)",
       iconColor: "hsl(142 71% 45%)",
-      value: `${formatNumber(Math.round((metrics?.recycling_rate ?? 0) * 100))}%`,
+      value: (
+        <AnimatedNumber
+          value={Math.round((metrics?.recycling_rate ?? 0) * 100)}
+          formatter={(n) => `${Math.round(n)}%`}
+        />
+      ),
       label: "Recycled",
     },
     {
       icon: Leaf,
       iconBgColor: "hsl(174 62% 47% / 0.1)",
       iconColor: "hsl(174 62% 47%)",
-      value: `${formatNumber(metrics?.co2_saved_kg ?? 0)} kg`,
+      value: (
+        <AnimatedNumber
+          value={metrics?.co2_saved_kg ?? 0}
+          formatter={(n) => `${n.toFixed(1)} kg`}
+        />
+      ),
       label: "CO2 Saved",
     },
     {
       icon: Package,
       iconBgColor: "hsl(199 89% 48% / 0.1)",
       iconColor: "hsl(199 89% 48%)",
-      value: formatNumber(metrics?.total_items ?? 0),
+      value: <AnimatedNumber value={metrics?.total_items ?? 0} />,
       label: "Total Items Sorted",
     },
   ];
@@ -104,7 +114,10 @@ export function HeroImpactSection() {
           <h1 className="max-w-lg text-center text-[20px] font-bold leading-[1.2] sm:text-[22px] md:text-[28px]">
             Great job! You&apos;ve diverted{" "}
             <span className="text-[hsl(var(--eco-green))] dark:text-[hsl(142_71%_55%)]">
-              {metrics?.waste_diverted_kg ?? 0} kg
+              <AnimatedNumber
+                value={metrics?.waste_diverted_kg ?? 0}
+                formatter={(n) => `${n.toFixed(1)} kg`}
+              />
             </span>{" "}
             of waste today.
           </h1>

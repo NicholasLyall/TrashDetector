@@ -4,8 +4,8 @@ import { Menu, ChevronDown, Hash, Percent, Target, AlertTriangle } from "lucide-
 
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { computeKpiMetrics } from "@/lib/compute-metrics";
-import { sortEventsMockData } from "@/lib/mock-data";
+import { useMetrics } from "@/hooks/use-metrics";
+import { AnimatedNumber } from "@/components/dashboard/animated-number";
 
 function KpiChip({
   icon: Icon,
@@ -14,7 +14,7 @@ function KpiChip({
 }: {
   readonly icon: React.ElementType;
   readonly label: string;
-  readonly value: string;
+  readonly value: React.ReactNode;
 }) {
   return (
     <div className="flex items-center gap-1.5 rounded-full bg-gray-50 px-3 py-1.5 text-sm">
@@ -30,7 +30,7 @@ export function TopBar({
 }: {
   onMobileMenuOpen: () => void;
 }) {
-  const kpi = computeKpiMetrics(sortEventsMockData);
+  const { metrics } = useMetrics();
 
   return (
     <header className="flex h-16 items-center justify-between border-b border-gray-200 bg-white px-4 md:px-6">
@@ -55,10 +55,41 @@ export function TopBar({
 
       {/* KPI chip strip */}
       <div className="hidden flex-1 items-center justify-center gap-2 md:flex">
-        <KpiChip icon={Hash} label="Total Items" value={String(kpi.totalItems)} />
-        <KpiChip icon={Percent} label="Recycling Rate" value={`${kpi.recyclingRate}%`} />
-        <KpiChip icon={Target} label="Avg Confidence" value={`${kpi.avgConfidence}%`} />
-        <KpiChip icon={AlertTriangle} label="Fallback Rate" value={`${kpi.fallbackRate}%`} />
+        <KpiChip
+          icon={Hash}
+          label="Total Items"
+          value={<AnimatedNumber value={metrics?.total_items ?? 0} />}
+        />
+        <KpiChip
+          icon={Percent}
+          label="Recycling Rate"
+          value={
+            <AnimatedNumber
+              value={Math.round((metrics?.recycling_rate ?? 0) * 100)}
+              formatter={(n) => `${Math.round(n)}%`}
+            />
+          }
+        />
+        <KpiChip
+          icon={Target}
+          label="Avg Confidence"
+          value={
+            <AnimatedNumber
+              value={Math.round((metrics?.avg_confidence ?? 0) * 100)}
+              formatter={(n) => `${Math.round(n)}%`}
+            />
+          }
+        />
+        <KpiChip
+          icon={AlertTriangle}
+          label="Fallback Rate"
+          value={
+            <AnimatedNumber
+              value={Math.round((metrics?.fallback_rate ?? 0) * 100)}
+              formatter={(n) => `${Math.round(n)}%`}
+            />
+          }
+        />
       </div>
 
       {/* User avatar */}
