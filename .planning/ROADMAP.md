@@ -128,10 +128,11 @@ Plans:
   1. Analytics page shows deeper category breakdown charts beyond the homepage summary
   2. Analytics page shows time-based sorting trend charts (volume over time)
   3. Analytics page shows a recent event list with filtering capability
-**Plans**: 1 plan
+**Plans**: 2 plans
 
 Plans:
-- [ ] 07-01: TBD
+- [ ] 07-01-PLAN.md — Install shadcn Table/Select, create compute-analytics utility, build CategoryBreakdownCard and SortingTrendCard
+- [ ] 07-02-PLAN.md — Create CategoryFilter and EventHistoryCard components, wire complete Analytics page
 
 ### Phase 8: Impact Page
 **Goal**: Users feel emotionally compelled by tangible environmental equivalents of the system's impact
@@ -188,7 +189,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 4. Dashboard Supporting Sections | 0/2 | Not started | - |
 | 5. Backend API and Database | 3/3 | Complete | 2026-03-21 |
 | 6. Data Integration and Polling | 0/2 | Not started | - |
-| 7. Analytics Page | 0/1 | Not started | - |
+| 7. Analytics Page | 0/2 | Not started | - |
 | 8. Impact Page | 0/1 | Not started | - |
 | 9. Model Detail and Settings Pages | 0/2 | Not started | - |
 | 10. Visual Polish and Demo Readiness | 0/1 | Not started | - |
