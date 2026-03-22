@@ -24,6 +24,7 @@ export function LiveFeedSection() {
   const { events: rawEvents, error, isLoading } = useEvents(20);
   const [showEmptyState, setShowEmptyState] = useState(false);
   const lastSuccessRef = useRef(Date.now());
+  const prevLatestIdRef = useRef<string | null>(null);
 
   useEffect(() => {
     if (rawEvents && !error) {
@@ -38,6 +39,14 @@ export function LiveFeedSection() {
     }
     setShowEmptyState(false);
   }, [error, rawEvents]);
+
+  // Track previous latest event ID to detect new arrivals (D-04)
+  const latestEventId = (rawEvents ?? [])[0]?.id ?? null;
+  const isNewEvent = latestEventId != null && latestEventId !== prevLatestIdRef.current;
+
+  useEffect(() => {
+    prevLatestIdRef.current = latestEventId;
+  }, [latestEventId]);
 
   if (isLoading) return <FeedSkeleton />;
 
@@ -59,15 +68,6 @@ export function LiveFeedSection() {
 
   const latestEvent = events[0] ?? null;
   const recentEvents = events.slice(1);
-
-  // Track previous latest event ID to detect new arrivals (D-04)
-  const prevLatestIdRef = useRef<string | null>(null);
-  const isNewEvent =
-    latestEvent != null && latestEvent.id !== prevLatestIdRef.current;
-
-  useEffect(() => {
-    prevLatestIdRef.current = latestEvent?.id ?? null;
-  }, [latestEvent?.id]);
 
   // Filter to today's events before calculating tree equivalence (D-10)
   const todayEvents = events.filter(
