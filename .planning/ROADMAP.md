@@ -170,10 +170,11 @@ Plans:
   1. Overall aesthetic is premium SaaS -- not cartoonish, not sterile -- consistently across all pages
   2. The demo loop works: adding an event causes hero metrics, live feed, waste breakdown, and charts to update within 2 seconds
   3. No visual inconsistencies, broken layouts, or placeholder content remain
-**Plans**: 1 plan
+**Plans**: 2 plans
 
 Plans:
-- [ ] 10-01: TBD
+- [ ] 10-01-PLAN.md — Demo button, animated number counters, and new-event pulse highlight
+- [ ] 10-02-PLAN.md — Sidebar polish, page transitions, cross-page consistency pass, and visual verification
 
 ## Progress
 
@@ -192,4 +193,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 | 7. Analytics Page | 0/2 | Not started | - |
 | 8. Impact Page | 0/1 | Not started | - |
 | 9. Model Detail and Settings Pages | 0/2 | Not started | - |
-| 10. Visual Polish and Demo Readiness | 0/1 | Not started | - |
+| 10. Visual Polish and Demo Readiness | 0/2 | Not started | - |
