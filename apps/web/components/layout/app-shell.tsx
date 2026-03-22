@@ -35,7 +35,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div className="flex min-h-screen flex-1 flex-col overflow-hidden">
         <TopBar onMobileMenuOpen={() => setSidebarOpen(true)} />
         <main
-          className="relative flex-1 overflow-y-auto p-6 md:p-8 animate-page-fade-in"
+          className="relative flex-1 overflow-y-auto px-6 pb-6 pt-2 md:px-8 md:pb-8 md:pt-2 animate-page-fade-in"
           style={{ background: "linear-gradient(180deg, #d2ede5 0%, #e2f3ed 40%, #ebf5f3 100%)" }}
         >
           {/* Decorative floating leaves on page background */}

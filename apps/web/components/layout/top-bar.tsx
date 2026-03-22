@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, ChevronDown, Package, Percent, Target, AlertTriangle, LayoutDashboard, Recycle, BarChart3, RotateCcw } from "lucide-react";
+import { Menu, Package, Recycle, BarChart3, RotateCcw } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -21,7 +21,7 @@ function KpiChip({
   readonly value: React.ReactNode;
 }) {
   return (
-    <div className="flex items-center gap-2 rounded-full bg-gradient-to-r from-white to-emerald-50/50 px-3 py-1.5 shadow-sm border border-emerald-100/40 min-w-[8rem]">
+    <div className="flex items-center gap-3 rounded-full bg-gradient-to-r from-white to-emerald-50/50 px-5 py-2 shadow-sm border border-emerald-100/40 min-w-[10rem]">
       <div className={`flex h-8 w-8 items-center justify-center rounded-full ${iconBg} ${iconColor} shrink-0`}>
         <Icon className="h-3.5 w-3.5" strokeWidth={2.5} aria-hidden="true" />
       </div>
@@ -53,17 +53,8 @@ export function TopBar({
         <span className="sr-only">Open navigation menu</span>
       </Button>
 
-      {/* Title section */}
-      <div className="flex items-center gap-3 cursor-pointer hover:bg-white/30 p-2 -ml-2 rounded-2xl transition-colors">
-        <LayoutDashboard className="text-slate-500 h-6 w-6" />
-        <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight">
-          Smart Dashboard
-        </h1>
-        <ChevronDown className="h-[18px] w-[18px] text-slate-400 ml-1" />
-      </div>
-
       {/* KPI chip strip */}
-      <div className="hidden flex-1 items-center justify-center gap-2 md:flex">
+      <div className="hidden flex-1 items-center justify-center gap-4 md:flex">
         <KpiChip
           icon={Package}
           iconBg="bg-teal-50"

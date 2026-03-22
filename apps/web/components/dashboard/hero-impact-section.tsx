@@ -53,7 +53,7 @@ export function HeroImpactSection() {
         <HeroIllustration />
         {/* Dark overlay for text contrast */}
         <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black/30 via-black/15 to-transparent" />
-        <div className="relative z-10 px-6 py-5 md:px-8 md:py-6">
+        <div className="relative z-10 px-6 py-8 md:px-8 md:py-10">
           <h1 className="max-w-xl text-xl font-extrabold leading-tight md:text-2xl text-white tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
             Great job! You&apos;ve diverted{" "}
             <span className="text-amber-200 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
