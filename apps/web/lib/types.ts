@@ -62,3 +62,15 @@ export interface CategoryBreakdown {
 export interface BreakdownData {
   readonly categories: readonly CategoryBreakdown[];
 }
+
+/**
+ * GET /devices response item.
+ * Mirrors backend apps/api/schemas.py DeviceResponse field-for-field.
+ */
+export interface DeviceData {
+  readonly id: string;
+  readonly name: string;
+  readonly location_name: string | null;
+  readonly status: string;
+  readonly created_at: string;
+}
