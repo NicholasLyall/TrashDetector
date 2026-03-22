@@ -17,7 +17,7 @@ const LEGEND_LABELS: Readonly<Record<WasteCategory, string>> = {
   paper_cardboard: "Paper",
   metal_glass: "Metal/Glass",
   plastic: "Plastic",
-  trash: "Misc",
+  trash: "Trash",
 };
 
 /** Category emoji-style labels for legend icons */

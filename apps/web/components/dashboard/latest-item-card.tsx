@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { SortEvent } from "@/lib/types";
-import { CategoryBadge } from "@/lib/categories";
-import { ITEM_NAMES } from "@/lib/mock-data";
+import { CategoryBadge, CATEGORY_CONFIG } from "@/lib/categories";
 import { CategoryIllustration } from "@/components/dashboard/category-illustrations";
 import { formatRelativeTime } from "@/lib/format-relative-time";
 import { Card } from "@/components/ui/card";
@@ -21,7 +20,7 @@ interface LatestItemCardProps {
  * (D-04: pulse on new event arrival)
  */
 export function LatestItemCard({ event, isNew }: LatestItemCardProps) {
-  const itemName = ITEM_NAMES[event.label][0];
+  const itemName = CATEGORY_CONFIG[event.label].displayLabel;
   const [showPulse, setShowPulse] = useState(false);
 
   useEffect(() => {
